@@ -1,37 +1,41 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { Link } from "@inertiajs/vue3";
+
+const mobileMenuOpen = ref(false);
+const dropDownOpen = ref(false);
+</script>
 
 <template>
     <!-- Navigation -->
-    <nav
-        x-data="{ mobileMenuOpen: false, userMenuOpen: false }"
-        class="bg-white shadow"
-    >
+    <nav class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 justify-between">
                 <div class="flex">
                     <div class="flex flex-shrink-0 items-center">
-                        <a href="/">
+                        <Link href="/">
                             <h2 class="font-bold text-2xl">Barta</h2>
-                        </a>
+                        </Link>
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                        <a
+                        <Link
                             href="#"
                             class="inline-flex items-center border-b-2 border-gray-800 px-1 pt-1 text-sm font-semibold text-gray-900"
                         >
                             Discover
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="#"
                             class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-800"
                         >
                             For you
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="#"
                             class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-800"
-                            >People</a
                         >
+                            People
+                        </Link>
                     </div>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
@@ -88,10 +92,10 @@
                     </button>
 
                     <!-- Profile dropdown -->
-                    <div class="relative ml-3" x-data="{ open: false }">
+                    <div class="relative ml-3">
                         <div>
                             <button
-                                @click="open = !open"
+                                @click="dropDownOpen = !dropDownOpen"
                                 type="button"
                                 class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                                 id="user-menu-button"
@@ -109,38 +113,39 @@
 
                         <!-- Dropdown menu -->
                         <div
-                            x-show="open"
-                            @click.away="open = false"
+                            v-show="dropDownOpen"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu"
                             aria-orientation="vertical"
                             aria-labelledby="user-menu-button"
                             tabindex="-1"
                         >
-                            <a
-                                href="./profile.html"
+                            <Link
+                                href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
                                 id="user-menu-item-0"
-                                >Your Profile</a
                             >
-                            <a
-                                href="./edit-profile.html"
+                                Your Profile
+                            </Link>
+                            <Link
+                                href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
                                 id="user-menu-item-1"
-                                >Edit Profile</a
-                            >
-                            <a
+                                >Edit Profile
+                            </Link>
+                            <Link
                                 href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
                                 id="user-menu-item-2"
-                                >Sign out</a
                             >
+                                Sign out
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -156,7 +161,7 @@
                         <span class="sr-only">Open main menu</span>
                         <!-- Icon when menu is closed -->
                         <svg
-                            x-show="!mobileMenuOpen"
+                            v-show="!mobileMenuOpen"
                             class="block h-6 w-6"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -174,7 +179,7 @@
 
                         <!-- Icon when menu is open -->
                         <svg
-                            x-show="mobileMenuOpen"
+                            v-show="mobileMenuOpen"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
@@ -194,7 +199,7 @@
         </div>
 
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div x-show="mobileMenuOpen" class="sm:hidden" id="mobile-menu">
+        <div v-show="mobileMenuOpen" class="sm:hidden" id="mobile-menu">
             <div class="border-t border-gray-200 pt-4 pb-3">
                 <div class="flex items-center px-4">
                     <div>
@@ -207,21 +212,21 @@
                     </div>
                 </div>
                 <div class="mt-3 space-y-1">
-                    <a
-                        href="./profile.html"
-                        class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                        >Your Profile</a
-                    >
-                    <a
-                        href="./edit-profile.html"
-                        class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                        >Edit Profile</a
-                    >
-                    <a
+                    <Link
                         href="#"
                         class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
-                        >Sign out</a
-                    >
+                        >Your Profile
+                    </Link>
+                    <Link
+                        href="#"
+                        class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                        >Edit Profile
+                    </Link>
+                    <Link
+                        href="#"
+                        class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                        >Sign out
+                    </Link>
                 </div>
             </div>
         </div>

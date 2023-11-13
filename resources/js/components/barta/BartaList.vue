@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+const dropDownOpen = ref(false);
+</script>
 
 <template>
     <article
@@ -38,14 +41,11 @@
                 </div>
 
                 <!-- Card Action Dropdown -->
-                <div
-                    class="flex flex-shrink-0 self-center"
-                    x-data="{ open: false }"
-                >
+                <div class="flex flex-shrink-0 self-center">
                     <div class="relative inline-block text-left">
                         <div>
                             <button
-                                @click="open = !open"
+                                @click="dropDownOpen = !dropDownOpen"
                                 type="button"
                                 class="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600"
                                 id="menu-0-button"
@@ -65,8 +65,7 @@
                         </div>
                         <!-- Dropdown menu -->
                         <div
-                            x-show="open"
-                            @click.away="open = false"
+                            v-show="dropDownOpen"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu"
                             aria-orientation="vertical"
