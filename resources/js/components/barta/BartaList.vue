@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { Link } from "@inertiajs/vue3";
 const dropDownOpen = ref(false);
 </script>
 
@@ -23,19 +24,21 @@ const dropDownOpen = ref(false);
 
                     <!-- User Info -->
                     <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                        <a
-                            href="profile.html"
+                        <Link
+                            href="#"
+                            preserve-scroll
                             class="hover:underline font-semibold line-clamp-1"
                         >
                             Chandan Ojha
-                        </a>
+                        </Link>
 
-                        <a
-                            href="profile.html"
+                        <Link
+                            href="#"
+                            preserve-scroll
                             class="hover:underline text-sm text-gray-500 line-clamp-1"
                         >
                             @chandan
-                        </a>
+                        </Link>
                     </div>
                     <!-- /User Info -->
                 </div>
@@ -96,7 +99,7 @@ const dropDownOpen = ref(false);
         </header>
 
         <!-- Content -->
-        <a href="./single.html">
+        <Link href="#" preserve-scroll>
             <div class="py-4 text-gray-700 font-normal">
                 <p>
                     🎉🥳 Turning 20 today! 🎂
@@ -113,7 +116,7 @@ const dropDownOpen = ref(false);
                     Keep me in your prayers 😌
                 </p>
             </div>
-        </a>
+        </Link>
 
         <!-- Date Created & View Stat -->
         <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
@@ -128,8 +131,9 @@ const dropDownOpen = ref(false);
             <div class="flex items-center justify-between">
                 <div class="flex gap-8 text-gray-600">
                     <!-- Comment Button -->
-                    <a
-                        href="./single.html"
+                    <Link
+                        href="#"
+                        preserve-scroll
                         type="button"
                         class="-m-2 flex gap-2 text-xs items-center rounded-full p-2 text-gray-600 hover:text-gray-800"
                     >
@@ -150,7 +154,7 @@ const dropDownOpen = ref(false);
                         </svg>
 
                         <p>0</p>
-                    </a>
+                    </Link>
                     <!-- /Comment Button -->
                 </div>
             </div>
