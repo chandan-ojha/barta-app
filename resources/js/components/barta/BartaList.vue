@@ -99,7 +99,7 @@ const dropDownOpen = ref(false);
         </header>
 
         <!-- Content -->
-        <Link href="#" preserve-scroll>
+        <Link href="single-barta" preserve-scroll>
             <div class="py-4 text-gray-700 font-normal">
                 <p>
                     🎉🥳 Turning 20 today! 🎂
@@ -132,7 +132,7 @@ const dropDownOpen = ref(false);
                 <div class="flex gap-8 text-gray-600">
                     <!-- Comment Button -->
                     <Link
-                        href="#"
+                        href="single-barta"
                         preserve-scroll
                         type="button"
                         class="-m-2 flex gap-2 text-xs items-center rounded-full p-2 text-gray-600 hover:text-gray-800"

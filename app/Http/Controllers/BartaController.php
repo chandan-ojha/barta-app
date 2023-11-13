@@ -11,4 +11,11 @@ class BartaController extends Controller
     {
         return Inertia::render('Barta');
     }
+
+    public function single_barta()
+    {
+        return Inertia::render('SingleBarta');
+    }
+
+
 }

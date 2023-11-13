@@ -15,3 +15,4 @@ use App\Http\Controllers\BartaController;
 */
 
 Route::get('/', [BartaController::class, 'index']);
+Route::get('/single-barta', [BartaController::class, 'single_barta'])->name('single-barta');
