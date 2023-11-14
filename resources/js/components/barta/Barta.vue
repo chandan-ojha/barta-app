@@ -102,7 +102,7 @@ defineProps(["bartas"]);
         </header>
 
         <!-- Content -->
-        <Link href="barta-detail" preserve-scroll>
+        <Link :href="`/barta-detail/${barta.id}`">
             <div class="py-4 text-gray-700 font-normal">
                 <p>
                     {{ barta.body }}
@@ -124,8 +124,7 @@ defineProps(["bartas"]);
                 <div class="flex gap-8 text-gray-600">
                     <!-- Comment Button -->
                     <Link
-                        href="barta-detail"
-                        preserve-scroll
+                        :href="`/barta-detail/${barta.id}`"
                         type="button"
                         class="-m-2 flex gap-2 text-xs items-center rounded-full p-2 text-gray-600 hover:text-gray-800"
                     >

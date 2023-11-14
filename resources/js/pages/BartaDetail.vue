@@ -4,6 +4,7 @@ import NavBar from "../components/common/NavBar.vue";
 import Footer from "../components/common/Footer.vue";
 import Comments from "../components/comment/Comments.vue";
 const dropDownOpen = ref(false);
+defineProps({ barta: Object });
 </script>
 
 <template>
@@ -102,14 +103,7 @@ const dropDownOpen = ref(false);
                 <!-- Content -->
                 <div class="py-4 text-gray-700 font-normal">
                     <p>
-                        PHP এর $ নিয়ে এত টানাটানি না করে চাইলেই কিন্তু PHP কে
-                        fork করে PoorPHP নামে নতুন ল্যাঙ্গুয়েজ বানানো যায়।
-                        <br />
-                        সবই থাকবে, কেবল $ থাকবে না!
-                        <br />
-                        <br />
-
-                        আইডিয়াটা কেমন বন্ধুরা? 😁
+                        {{ barta.body }}
                     </p>
                 </div>
 

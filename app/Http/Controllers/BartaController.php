@@ -18,9 +18,14 @@ class BartaController extends Controller
         );
     }
 
-    public function barta_detail()
+    public function barta_detail($id)
     {
-        return Inertia::render('BartaDetail');
+        $barta = Post::find($id);
+        return Inertia::render('BartaDetail',
+             [
+                'barta' => $barta
+             ]
+        );
     }
 
     public function barta_post(Request $request)
