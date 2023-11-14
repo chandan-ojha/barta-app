@@ -7,14 +7,14 @@ use Inertia\Inertia;
 
 class BartaController extends Controller
 {
-    public function index()
+    public function barta_app()
     {
-        return Inertia::render('Barta');
+        return Inertia::render('BartaApp');
     }
 
-    public function single_barta()
+    public function barta_detail()
     {
-        return Inertia::render('SingleBarta');
+        return Inertia::render('BartaDetail');
     }
 
 

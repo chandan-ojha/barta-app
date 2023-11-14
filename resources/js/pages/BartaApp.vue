@@ -2,7 +2,7 @@
 import NavBar from "../components/common/NavBar.vue";
 import Footer from "../components/common/Footer.vue";
 import BartaPost from "../components/barta/BartaPost.vue";
-import BartaList from "../components/barta/BartaList.vue";
+import Barta from "../components/barta/Barta.vue";
 </script>
 
 <template>
@@ -17,9 +17,10 @@ import BartaList from "../components/barta/BartaList.vue";
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
             <!-- Barta Card -->
-            <BartaList />
-            <BartaList />
-            <BartaList />
+            <Barta />
+            <Barta />
+            <Barta />
+            <Barta />
             <!-- /Barta Card -->
         </section>
         <!-- /Newsfeed -->

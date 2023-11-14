@@ -14,5 +14,5 @@ use App\Http\Controllers\BartaController;
 |
 */
 
-Route::get('/', [BartaController::class, 'index']);
-Route::get('/single-barta', [BartaController::class, 'single_barta'])->name('single-barta');
+Route::get('/', [BartaController::class, 'barta_app'])->name('barta-app');
+Route::get('/barta-detail', [BartaController::class, 'barta_detail'])->name('barta-detail');
