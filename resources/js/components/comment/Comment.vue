@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { Link } from "@inertiajs/vue3";
+const dropDownOpen = ref(false);
+</script>
 
 <template>
     <div class="py-4">
