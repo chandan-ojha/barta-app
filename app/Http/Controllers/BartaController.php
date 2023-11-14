@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Post;
 
 class BartaController extends Controller
 {
     public function barta_app()
     {
-        return Inertia::render('BartaApp');
+        $bartas = Post::orderBy('created_at', 'desc')->get();
+        return Inertia::render('BartaApp',
+            [
+                'bartas' => $bartas
+            ]
+        );
     }
 
     public function barta_detail()
@@ -17,5 +23,13 @@ class BartaController extends Controller
         return Inertia::render('BartaDetail');
     }
 
+    public function barta_post(Request $request)
+    {
+        $post = new Post();
+        $post->body = $request->body;
+        $post->save();
 
+        return redirect()->back()->with('message', 'Barta created successfully!');
+
+    }
 }

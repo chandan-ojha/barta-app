@@ -2,10 +2,13 @@
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 const dropDownOpen = ref(false);
+defineProps(["bartas"]);
 </script>
 
 <template>
     <article
+        v-for="barta in bartas"
+        :key="barta.id"
         class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6"
     >
         <!-- Barta Card Top -->
@@ -102,18 +105,7 @@ const dropDownOpen = ref(false);
         <Link href="barta-detail" preserve-scroll>
             <div class="py-4 text-gray-700 font-normal">
                 <p>
-                    🎉🥳 Turning 20 today! 🎂
-                    <br />
-                    One of the best things in my life has been my love affair
-                    with
-                    <a
-                        href="#laravel"
-                        class="text-black font-semibold hover:underline"
-                        >#Laravel</a
-                    >
-                    <br />
-                    <br />
-                    Keep me in your prayers 😌
+                    {{ barta.body }}
                 </p>
             </div>
         </Link>

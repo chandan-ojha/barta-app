@@ -1,9 +1,20 @@
-<script setup></script>
+<script setup>
+import { useForm, usePage } from "@inertiajs/vue3";
+const form = useForm({ body: "" });
+
+function submit() {
+    form.post("/barta-post", {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset();
+        },
+    });
+}
+</script>
 
 <template>
     <form
-        method="POST"
-        enctype="multipart/form-data"
+        @submit.prevent="submit"
         class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3"
     >
         <!-- Create Post Card Top -->
@@ -26,6 +37,7 @@
                         name="barta"
                         rows="2"
                         placeholder="What's going on, Chandan?"
+                        v-model="form.body"
                     ></textarea>
                 </div>
             </div>
