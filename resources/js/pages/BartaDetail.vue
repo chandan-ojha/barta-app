@@ -191,7 +191,7 @@ function comment_post() {
 
             <hr />
             <!-- Comments -->
-            <Comments :comments="props.comments" />
+            <Comments v-if="comments.length > 0" :comments="props.comments" />
             <!-- /Comments -->
         </section>
         <!-- /Newsfeed -->
