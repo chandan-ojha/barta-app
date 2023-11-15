@@ -19,4 +19,3 @@ Route::get('/barta-detail/{id}', [BartaController::class, 'barta_detail'])->name
 Route::get('/get-all-barta', [BartaController::class, 'get_all_barta'])->name('get-all-barta');
 Route::post('/barta-post', [BartaController::class, 'barta_post'])->name('barta-post');
 Route::post('/comment-post', [BartaController::class, 'comment_post'])->name('comment-post');
-
