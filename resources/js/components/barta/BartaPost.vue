@@ -2,7 +2,7 @@
 import { useForm, usePage } from "@inertiajs/vue3";
 const form = useForm({ body: "" });
 
-function submit() {
+function barta_post() {
     form.post("/barta-post", {
         preserveScroll: true,
         onSuccess: () => {
@@ -14,7 +14,7 @@ function submit() {
 
 <template>
     <form
-        @submit.prevent="submit"
+        @submit.prevent="barta_post"
         class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3"
     >
         <!-- Create Post Card Top -->
