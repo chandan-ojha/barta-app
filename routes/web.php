@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BartaController;
 
 /*
@@ -13,7 +14,11 @@ use App\Http\Controllers\BartaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//User Authentication
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
 
+//Barta
 Route::get('/', [BartaController::class, 'barta_app'])->name('barta-app');
 Route::get('/barta-detail/{id}', [BartaController::class, 'barta_detail'])->name('barta-detail');
 Route::get('/get-all-barta', [BartaController::class, 'get_all_barta'])->name('get-all-barta');
