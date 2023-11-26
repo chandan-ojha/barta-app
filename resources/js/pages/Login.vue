@@ -1,8 +1,26 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, useForm, usePage } from "@inertiajs/vue3";
+defineProps(["errors"]);
+const page = usePage();
+
+const form = useForm({
+    email: "",
+    password: "",
+});
+
+function login_user() {
+    form.post("/user-login", {
+        preserveScroll: true,
+        onSuccess: () => {
+            alert(page.props.flash.message);
+            form.reset();
+        },
+    });
+}
 </script>
 
 <template>
+    <Head title="Login" />
     <div class="h-full">
         <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -21,7 +39,8 @@ import { Link } from "@inertiajs/vue3";
             </div>
 
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="#" method="POST">
+                <form class="space-y-6" @submit.prevent="login_user">
+                    <!-- Email -->
                     <div>
                         <label
                             for="email"
@@ -31,17 +50,25 @@ import { Link } from "@inertiajs/vue3";
                         </label>
                         <div class="mt-2">
                             <input
+                                v-model="form.email"
                                 id="email"
                                 name="email"
                                 type="email"
                                 autocomplete="email"
                                 placeholder="chandan@gmail.com"
-                                required
                                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                             />
                         </div>
+                        <!-- display error message -->
+                        <div class="mt-2 text-sm text-red-600">
+                            <p
+                                v-if="form.errors.email"
+                                v-text="form.errors.email"
+                            ></p>
+                        </div>
                     </div>
 
+                    <!-- Password -->
                     <div>
                         <div class="flex items-center justify-between">
                             <label
@@ -61,14 +88,21 @@ import { Link } from "@inertiajs/vue3";
                         </div>
                         <div class="mt-2">
                             <input
+                                v-model="form.password"
                                 id="password"
                                 name="password"
                                 type="password"
                                 autocomplete="current-password"
                                 placeholder="••••••••"
-                                required
                                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                             />
+                        </div>
+                        <!-- display error message -->
+                        <div class="mt-2 text-sm text-red-600">
+                            <p
+                                v-if="form.errors.password"
+                                v-text="form.errors.password"
+                            ></p>
                         </div>
                     </div>
 

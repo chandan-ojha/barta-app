@@ -5,6 +5,7 @@ import Footer from "../components/common/Footer.vue";
 import Comments from "../components/comment/Comments.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 const dropDownOpen = ref(false);
+
 const props = defineProps({
     barta: {
         type: Object,
@@ -30,6 +31,7 @@ function comment_post() {
 </script>
 
 <template>
+    <Head title="Barta Detail" />
     <NavBar />
     <main
         class="container max-w-2xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen"

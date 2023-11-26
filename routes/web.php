@@ -14,9 +14,20 @@ use App\Http\Controllers\BartaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//
+Route::middleware('auth')->group(function(){
+
+});
+
+//User Authentication Page
+Route::get('/login', [AuthController::class, 'login_page'])->name('login');
+Route::get('/register', [AuthController::class, 'register_page'])->name('register');
+
 //User Authentication
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/create-user', [AuthController::class, 'create_user'])->name('create-user');
+Route::post('/user-login', [AuthController::class, 'user_login'])->name('user-login');
+
 
 //Barta
 Route::get('/', [BartaController::class, 'barta_app'])->name('barta-app');
