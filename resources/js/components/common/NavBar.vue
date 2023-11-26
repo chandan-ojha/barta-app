@@ -1,6 +1,11 @@
 <script setup>
-import { ref } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { ref, computed } from "vue";
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+const username = computed(() => page.props.auth?.user?.name);
+
+// console.log(username.value);
 
 const mobileMenuOpen = ref(false);
 const dropDownOpen = ref(false);
@@ -120,6 +125,15 @@ const dropDownOpen = ref(false);
                             aria-labelledby="user-menu-button"
                             tabindex="-1"
                         >
+                            <Link
+                                href="#"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                role="menuitem"
+                                tabindex="-1"
+                                id="user-menu-item-0"
+                            >
+                                Chandan Ojha
+                            </Link>
                             <Link
                                 href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

@@ -17,7 +17,7 @@ use App\Http\Controllers\BartaController;
 
 //
 Route::middleware('auth')->group(function(){
-
+    // Route::inertia('/', [BartaController::class, 'barta_app'])->name('barta-app');
 });
 
 //User Authentication Page

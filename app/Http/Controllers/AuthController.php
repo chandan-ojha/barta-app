@@ -58,6 +58,8 @@ class AuthController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
 
+            // $request->session()->regenerate();
+
             $token = Crypt::encrypt($user->createToken('authToken')->plainTextToken);
 
             $cookie = cookie('jwt', $token, 60 * 24); // 1 day
