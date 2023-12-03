@@ -13,7 +13,8 @@ class BartaController extends Controller
     public function barta_app()
     {
         $bartas = Post::orderBy('created_at', 'desc')->get();
-        return Inertia::render('BartaApp',
+        return Inertia::render(
+            'BartaApp',
             [
                 'bartas' => $bartas
             ]
@@ -25,11 +26,12 @@ class BartaController extends Controller
     {
         $barta = Post::find($id);
         $comments = $barta->comments()->orderBy('created_at', 'desc')->get();
-        return Inertia::render('BartaDetail',
-             [
+        return Inertia::render(
+            'BartaDetail',
+            [
                 'barta' => $barta,
                 'comments' => $comments
-             ]
+            ]
         );
     }
 

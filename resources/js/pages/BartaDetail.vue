@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import NavBar from "../components/common/NavBar.vue";
-import Footer from "../components/common/Footer.vue";
+import NavBar from "./Shared/NavBar.vue";
+import Footer from "./Shared/Footer.vue";
 import Comments from "../components/comment/Comments.vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 const dropDownOpen = ref(false);

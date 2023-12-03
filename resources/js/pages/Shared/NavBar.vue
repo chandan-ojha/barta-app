@@ -1,14 +1,11 @@
 <script setup>
 import { ref, computed } from "vue";
 import { Link, usePage } from "@inertiajs/vue3";
-
-const page = usePage();
-const username = computed(() => page.props.auth?.user?.name);
-
-// console.log(username.value);
-
 const mobileMenuOpen = ref(false);
 const dropDownOpen = ref(false);
+const page = usePage();
+
+const username = computed(() => page.props.auth.user.username);
 </script>
 
 <template>
@@ -132,7 +129,7 @@ const dropDownOpen = ref(false);
                                 tabindex="-1"
                                 id="user-menu-item-0"
                             >
-                                Chandan Ojha
+                                {{ username }}
                             </Link>
                             <Link
                                 href="#"

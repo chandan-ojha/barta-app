@@ -1,7 +1,7 @@
 <script setup>
 import { usePage } from "@inertiajs/vue3";
-import NavBar from "../components/common/NavBar.vue";
-import Footer from "../components/common/Footer.vue";
+import NavBar from "./Shared/NavBar.vue";
+import Footer from "./Shared/Footer.vue";
 import BartaPost from "../components/barta/BartaPost.vue";
 import Barta from "../components/barta/Barta.vue";
 defineProps(["bartas"]);
