@@ -16,13 +16,15 @@ use App\Http\Controllers\BartaController;
 |
 */
 
-//User Authentication Page
-Route::get('/login', [LoginController::class, 'login_page'])->name('login');
-Route::get('/register', [RegistrationController::class, 'register_page'])->name('register');
+Route::middleware('guest')->group(function () {
+    //User Authentication Page
+    Route::get('/login', [LoginController::class, 'login_page'])->name('login');
+    Route::get('/register', [RegistrationController::class, 'register_page'])->name('register');
 
-//User Authentication
-Route::post('/create-user', [RegistrationController::class, 'create_user'])->name('create-user');
-Route::post('/user-login', [LoginController::class, 'user_login'])->name('user-login');
+    //User Authentication
+    Route::post('/create-user', [RegistrationController::class, 'create_user'])->name('create-user');
+    Route::post('/user-login', [LoginController::class, 'user_login'])->name('user-login');
+});
 
 
 Route::middleware('auth')->group(function () {
