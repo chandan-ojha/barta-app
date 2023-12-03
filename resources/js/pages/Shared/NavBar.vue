@@ -149,7 +149,8 @@ const username = computed(() => page.props.auth.user.username);
                                 >Edit Profile
                             </Link>
                             <Link
-                                href="#"
+                                href="/logout"
+                                method="post"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
