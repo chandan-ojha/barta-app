@@ -32,9 +32,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => '139997996949-vdm3si9src5b64bqf433hsjgrvlb0qjc.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'http://localhost:8000/login/google/callback',
+        'client_id' => '139997996949-vbskfcv6tk0ud31m3cosr8pngfe8jj5r.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://127.0.0.1:8000/login/google/callback',
     ],
 
 ];

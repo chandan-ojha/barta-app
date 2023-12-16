@@ -21,9 +21,13 @@ Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'login_page'])->name('login');
     Route::get('/register', [RegistrationController::class, 'register_page'])->name('register');
 
-    //User Authentication
+    //User Manual Authentication
     Route::post('/create-user', [RegistrationController::class, 'create_user'])->name('create-user');
     Route::post('/user-login', [LoginController::class, 'user_login'])->name('user-login');
+
+    //Google Authentication
+    Route::get('/login/google', [LoginController::class, 'googleRedirect']);
+    Route::get('/login/google/callback', [LoginController::class, 'loginWithGoogle']);
 });
 
 

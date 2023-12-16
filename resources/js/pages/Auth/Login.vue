@@ -119,9 +119,9 @@ function login_user() {
 
                 <!-- sign in with google -->
                 <div class="mt-5">
-                    <Link
+                    <a
+                        href="/login/google"
                         type="submit"
-                        as="button"
                         class="flex w-full justify-center rounded-md bg-[#4285F4] px-3 py-1.5 text-sm font-semibold leading-6 text-white items-center shadow-sm hover:bg-[#4285F4] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
                     >
                         <svg
@@ -140,7 +140,7 @@ function login_user() {
                             ></path>
                         </svg>
                         Sign in with Google
-                    </Link>
+                    </a>
                 </div>
 
                 <p class="mt-10 text-center text-sm text-gray-500">
