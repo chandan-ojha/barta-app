@@ -22,4 +22,15 @@ class PostController extends Controller
 
         return redirect()->back()->with('message', 'Barta created successfully!');
     }
+
+    //barta delete
+    public function barta_delete($id)
+    {
+        $post = Post::find($id);
+        $this->authorize('delete', $post);
+        $post->delete();
+        return redirect()->back()->with('message', 'Barta deleted successfully!');
+    }
+
+
 }
