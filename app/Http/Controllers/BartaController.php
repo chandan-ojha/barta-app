@@ -38,9 +38,14 @@ class BartaController extends Controller
     //barta post
     public function barta_post(Request $request)
     {
-        $post = new Post();
-        $post->body = $request->body;
-        $post->save();
+        $request->validate([
+            'body' => 'required'
+        ]);
+
+        Post::create([
+            'body' => $request->body,
+            'user_id' => auth()->user()->id
+        ]);
 
         return redirect()->back()->with('message', 'Barta created successfully!');
     }
