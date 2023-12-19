@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\BartaController;
+use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\Barta\AppController;
+use App\Http\Controllers\Barta\PostController;
+use App\Http\Controllers\Barta\CommentController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +34,10 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', [BartaController::class, 'barta_app'])->name('barta-app');
-    Route::get('/barta-detail/{id}', [BartaController::class, 'barta_detail'])->name('barta-detail');
-    Route::get('/get-all-barta', [BartaController::class, 'get_all_barta'])->name('get-all-barta');
-    Route::post('/barta-post', [BartaController::class, 'barta_post'])->name('barta-post');
-    Route::post('/comment-post', [BartaController::class, 'comment_post'])->name('comment-post');
+    Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
+    Route::get('/barta-detail/{id}', [AppController::class, 'barta_detail'])->name('barta-detail');
+    Route::get('/get-all-barta', [AppController::class, 'get_all_barta'])->name('get-all-barta');
+    Route::post('/barta-post', [PostController::class, 'barta_post'])->name('barta-post');
+    Route::post('/comment-post', [CommentController::class, 'comment_post'])->name('comment-post');
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 });
