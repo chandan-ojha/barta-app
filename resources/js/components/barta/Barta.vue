@@ -2,7 +2,8 @@
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { format } from 'date-fns'
-const dropDownOpen = ref(false);
+const dropDownOpen = ref(false)
+const isAuthorized = ref(true)
 
 const props = defineProps({
     bartas: {
@@ -77,7 +78,7 @@ const props = defineProps({
                         </div>
                         <!-- Dropdown menu -->
                         <div
-                            v-show="dropDownOpen"
+                            v-show="dropDownOpen && isAuthorized"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu"
                             aria-orientation="vertical"

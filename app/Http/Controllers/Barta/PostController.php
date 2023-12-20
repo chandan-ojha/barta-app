@@ -32,5 +32,4 @@ class PostController extends Controller
         return redirect()->back()->with('message', 'Barta deleted successfully!');
     }
 
-
 }
