@@ -12,10 +12,16 @@ class CommentController extends Controller
     //comment post
     public function comment_post(Request $request)
     {
+        $request->validate([
+            'body' => 'required'
+        ]);
+
         $post = Post::findOrfail($request->post_id);
-        $comment = new Comment();
-        $comment->body = $request->body;
-        $post->comments()->save($comment);
+
+        $post->comments()->create([
+            'body' => $request->body,
+            'user_id' => auth()->user()->id
+        ]);
 
         return redirect()->back()->with('message', 'Comment posted successfully!');
     }

@@ -16,6 +16,7 @@ const props = defineProps({
     },
 });
 
+const page = usePage();
 const form = useForm({
     post_id: props.barta.id,
     body: "",
@@ -25,6 +26,7 @@ function comment_post() {
     form.post("/comment-post", {
         preserveScroll: true,
         onSuccess: () => {
+            alert(page.props.flash.message);
             form.reset();
         },
     });
