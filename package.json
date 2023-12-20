@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.14",
-        "@vitejs/plugin-vue": "^4.4.1"
+        "@vitejs/plugin-vue": "^4.4.1",
+        "date-fns": "^3.0.1"
     }
 }

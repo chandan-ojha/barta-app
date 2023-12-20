@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from "vue";
+import { format } from 'date-fns'
 const dropDownOpen = ref(false);
+
 const props = defineProps({
     comments: {
         type: Array,
@@ -111,7 +113,7 @@ const props = defineProps({
 
                 <!-- Date Created -->
                 <div class="flex items-center gap-2 text-gray-500 text-xs">
-                    <span class="">6m ago</span>
+                    <span class="">{{ format(new Date(comment.created_at), 'MMMM dd, yyyy') }}</span>
                 </div>
             </div>
             <!-- /Comments -->

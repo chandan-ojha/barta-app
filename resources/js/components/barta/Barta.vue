@@ -1,13 +1,19 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
+import { format } from 'date-fns'
 const dropDownOpen = ref(false);
-defineProps(["bartas"]);
+
+const props = defineProps({
+    bartas: {
+        type: Array,
+    },
+});
 </script>
 
 <template>
     <article
-        v-for="barta in bartas"
+        v-for="barta in props.bartas"
         :key="barta.id"
         class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6"
     >
@@ -112,7 +118,7 @@ defineProps(["bartas"]);
 
         <!-- Date Created & View Stat -->
         <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-            <span class="">6 minutes ago</span>
+            <span class="">{{ format(new Date(barta.created_at), 'MMMM dd, yyyy') }}</span>
             <span class="">•</span>
             <span>450 views</span>
         </div>
