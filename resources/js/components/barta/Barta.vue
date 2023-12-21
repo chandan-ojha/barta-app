@@ -12,6 +12,11 @@ const props = defineProps({
         type: Object,
     },
 });
+
+//toggle dropdown
+const toggleDropDown = () => {
+    dropDownOpen.value = !dropDownOpen.value;
+};
 </script>
 
 <template>
@@ -60,7 +65,7 @@ const props = defineProps({
                     <div class="relative inline-block text-left">
                         <div>
                             <button
-                                @click="dropDownOpen = !dropDownOpen"
+                                @click="toggleDropDown"
                                 type="button"
                                 class="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600"
                                 id="menu-0-button"
