@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Barta;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class AppController extends Controller
@@ -15,7 +16,10 @@ class AppController extends Controller
         return Inertia::render(
             'BartaApp',
             [
-                'bartas' => $bartas
+                'bartas' => $bartas,
+                'can' => [
+                    'barta_delete' => Auth::user()->can('delete', $bartas->first())
+                ]
             ]
         );
     }
@@ -33,5 +37,4 @@ class AppController extends Controller
             ]
         );
     }
-
 }

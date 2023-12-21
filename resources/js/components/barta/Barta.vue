@@ -1,13 +1,15 @@
 <script setup>
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
-import { format } from 'date-fns'
-const dropDownOpen = ref(false)
-const isAuthorized = ref(true)
+import { format } from "date-fns";
+const dropDownOpen = ref(false);
 
 const props = defineProps({
     bartas: {
         type: Array,
+    },
+    can: {
+        type: Object,
     },
 });
 </script>
@@ -78,7 +80,7 @@ const props = defineProps({
                         </div>
                         <!-- Dropdown menu -->
                         <div
-                            v-show="dropDownOpen && isAuthorized"
+                            v-show="dropDownOpen"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu"
                             aria-orientation="vertical"
@@ -91,16 +93,28 @@ const props = defineProps({
                                 role="menuitem"
                                 tabindex="-1"
                                 id="user-menu-item-0"
-                                >Edit</a
                             >
+                                Share
+                            </a>
                             <a
                                 href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
-                                id="user-menu-item-1"
-                                >Delete</a
+                                id="user-menu-item-0"
                             >
+                                Edit
+                            </a>
+                            <Link
+                                v-if="props.can.barta_delete"
+                                :href="`/barta-delete/${barta.id}`"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                role="menuitem"
+                                tabindex="-1"
+                                id="user-menu-item-1"
+                            >
+                                Delete
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -119,7 +133,9 @@ const props = defineProps({
 
         <!-- Date Created & View Stat -->
         <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-            <span class="">{{ format(new Date(barta.created_at), 'MMMM dd, yyyy') }}</span>
+            <span class="">
+                {{ format(new Date(barta.created_at), "MMMM dd, yyyy") }}
+            </span>
             <span class="">•</span>
             <span>450 views</span>
         </div>

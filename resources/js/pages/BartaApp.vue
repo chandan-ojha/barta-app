@@ -4,7 +4,15 @@ import NavBar from "./Shared/NavBar.vue";
 import Footer from "./Shared/Footer.vue";
 import BartaPost from "../components/barta/BartaPost.vue";
 import Barta from "../components/barta/Barta.vue";
-defineProps(["bartas"]);
+
+const props = defineProps({
+    bartas: {
+        type: Array,
+    },
+    can: {
+        type: Object,
+    },
+});
 </script>
 
 <template>
@@ -20,7 +28,7 @@ defineProps(["bartas"]);
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
             <!-- Barta Card -->
-            <Barta :bartas="bartas" />
+            <Barta :bartas="props.bartas" :can="props.can" />
             <!-- /Barta Card -->
         </section>
         <!-- /Newsfeed -->
