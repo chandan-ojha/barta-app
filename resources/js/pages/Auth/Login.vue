@@ -1,8 +1,9 @@
 <script setup>
 import { Link, useForm, usePage } from "@inertiajs/vue3";
+import { flashMessage } from "../../utils/functions";
 defineProps(["errors"]);
-const page = usePage();
 
+const page = usePage();
 const form = useForm({
     email: "",
     password: "",
@@ -12,7 +13,7 @@ function login_user() {
     form.post("/user-login", {
         preserveScroll: true,
         onSuccess: () => {
-            alert(page.props.flash.message);
+            flashMessage(page.props.flash.message);
             form.reset();
         },
     });

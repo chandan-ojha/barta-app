@@ -1,5 +1,6 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
+import { flashMessage } from "../../utils/functions";
 
 const page = usePage();
 const form = useForm({ body: "" });
@@ -8,7 +9,7 @@ function barta_post() {
     form.post("/barta-post", {
         preserveScroll: true,
         onSuccess: () => {
-            alert(page.props.flash.message);
+            flashMessage(page.props.flash.message);
             form.reset();
         },
     });
