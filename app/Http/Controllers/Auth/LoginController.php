@@ -21,7 +21,6 @@ class LoginController extends Controller
     }
 
     /** User Manual login **/
-
     public function user_login(LoginRequest $request)
     {
         $credentials = $request->validated();
@@ -38,7 +37,6 @@ class LoginController extends Controller
     }
 
     /** Login with Google **/
-
     public function googleRedirect()
     {
         return Socialite::driver('google')->redirect();
@@ -52,6 +50,7 @@ class LoginController extends Controller
 
         if ($finduser) {
             Auth::login($finduser);
+
             return redirect('/');
         } else {
             $new_user = User::create([

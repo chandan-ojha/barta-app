@@ -12,11 +12,10 @@ class PostService
     {
         DB::transaction(function () use ($data) {
             $data = array_merge([
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
             ], $data);
 
             Post::create($data);
         }, 5);
     }
-
 }

@@ -12,7 +12,7 @@ class CommentService
     {
         DB::transaction(function () use ($data) {
             $data = array_merge([
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
             ], $data);
 
             $post = Post::findOrfail($data['post_id']);
@@ -20,5 +20,4 @@ class CommentService
             $post->comments()->create($data);
         }, 5);
     }
-
 }

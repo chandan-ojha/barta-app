@@ -23,6 +23,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $this->authorize('delete', $post);
         $post->delete();
+
         return redirect()->back()->with('message', 'Barta deleted successfully!');
     }
 }

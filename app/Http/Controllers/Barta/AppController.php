@@ -13,13 +13,14 @@ class AppController extends Controller
     public function barta_app()
     {
         $bartas = Post::orderBy('created_at', 'desc')->get();
+
         return Inertia::render(
             'BartaApp',
             [
                 'bartas' => $bartas,
                 'can' => [
-                    'barta_delete' => Auth::user()->can('delete', $bartas->first())
-                ]
+                    'barta_delete' => Auth::user()->can('delete', $bartas->first()),
+                ],
             ]
         );
     }
@@ -29,11 +30,12 @@ class AppController extends Controller
     {
         $barta = Post::find($id);
         $comments = $barta->comments()->orderBy('created_at', 'desc')->get();
+
         return Inertia::render(
             'BartaDetail',
             [
                 'barta' => $barta,
-                'comments' => $comments
+                'comments' => $comments,
             ]
         );
     }
