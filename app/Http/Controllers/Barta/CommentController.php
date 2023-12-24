@@ -3,25 +3,15 @@
 namespace App\Http\Controllers\Barta;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comment;
-use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\Barta\StoreCommentRequest;
+use App\Services\Barta\CommentService;
 
 class CommentController extends Controller
 {
     //comment post
-    public function comment_post(Request $request)
+    public function comment_post(StoreCommentRequest $request, CommentService $commentService)
     {
-        $request->validate([
-            'body' => 'required'
-        ]);
-
-        $post = Post::findOrfail($request->post_id);
-
-        $post->comments()->create([
-            'body' => $request->body,
-            'user_id' => auth()->user()->id
-        ]);
+        $commentService->comment_post($request->all());
 
         return redirect()->back()->with('message', 'Comment posted successfully!');
     }

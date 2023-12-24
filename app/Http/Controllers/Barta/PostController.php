@@ -3,22 +3,16 @@
 namespace App\Http\Controllers\Barta;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Barta\StorePostRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Services\Barta\PostService;
 
 class PostController extends Controller
 {
     //barta post
-    public function barta_post(Request $request)
+    public function barta_post(StorePostRequest $request, PostService $postService)
     {
-        $request->validate([
-            'body' => 'required'
-        ]);
-
-        Post::create([
-            'body' => $request->body,
-            'user_id' => auth()->user()->id
-        ]);
+        $postService->barta_post($request->validated());
 
         return redirect()->back()->with('message', 'Barta created successfully!');
     }
