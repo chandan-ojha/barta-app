@@ -1,7 +1,8 @@
 <script setup>
 import { ref } from "vue";
 import { useForm, usePage } from "@inertiajs/vue3";
-import { format } from 'date-fns'
+import { format } from "date-fns";
+import { flashMessage } from "../utils/functions";
 import NavBar from "./Shared/NavBar.vue";
 import Footer from "./Shared/Footer.vue";
 import Comments from "../components/comment/Comments.vue";
@@ -26,7 +27,7 @@ function comment_post() {
     form.post("/comment-post", {
         preserveScroll: true,
         onSuccess: () => {
-            alert(page.props.flash.message);
+            flashMessage(page.props.flash.message);
             form.reset();
         },
     });
@@ -136,7 +137,12 @@ function comment_post() {
 
                 <!-- Date Created & View Stat -->
                 <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-                    <span class="">{{ format(new Date(props.barta.created_at), 'MMMM dd, yyyy') }}</span>
+                    <span class="">{{
+                        format(
+                            new Date(props.barta.created_at),
+                            "MMMM dd, yyyy"
+                        )
+                    }}</span>
                     <span class="">•</span>
                     <span>3 comments</span>
                     <span class="">•</span>
