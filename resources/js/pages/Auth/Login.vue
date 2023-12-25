@@ -13,7 +13,7 @@ function login_user() {
     form.post("/user-login", {
         preserveScroll: true,
         onSuccess: () => {
-            flashMessage(page.props.flash.message);
+            flashMessage(page.props.flash.success);
             form.reset();
         },
     });

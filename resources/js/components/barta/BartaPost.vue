@@ -2,6 +2,12 @@
 import { useForm, usePage } from "@inertiajs/vue3";
 import { flashMessage } from "../../utils/functions";
 
+const props = defineProps({
+    errors: {
+        type: Object,
+    },
+});
+
 const page = usePage();
 const form = useForm({ body: "" });
 
@@ -9,8 +15,11 @@ function barta_post() {
     form.post("/barta-post", {
         preserveScroll: true,
         onSuccess: () => {
-            flashMessage(page.props.flash.message);
+            flashMessage("success", page.props.flash.success);
             form.reset();
+        },
+        onError: () => {
+            flashMessage("error", props.errors.body);
         },
     });
 }

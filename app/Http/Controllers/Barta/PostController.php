@@ -14,7 +14,7 @@ class PostController extends Controller
     {
         $postService->barta_post($request->validated());
 
-        return redirect()->back()->with('message', 'Barta created successfully!');
+        return redirect()->back()->with('success', 'Barta created successfully!');
     }
 
     //barta delete
@@ -24,6 +24,6 @@ class PostController extends Controller
         $this->authorize('delete', $post);
         $post->delete();
 
-        return redirect()->back()->with('message', 'Barta deleted successfully!');
+        return redirect()->back()->with('success', 'Barta deleted successfully!');
     }
 }

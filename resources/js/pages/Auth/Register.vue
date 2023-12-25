@@ -15,7 +15,7 @@ function create_user() {
     form.post("/create-user", {
         preserveScroll: true,
         onSuccess: () => {
-            flashMessage(page.props.flash.message);
+            flashMessage(page.props.flash.success);
             form.reset();
         },
     });

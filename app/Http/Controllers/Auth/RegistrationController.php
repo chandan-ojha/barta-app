@@ -32,7 +32,7 @@ class RegistrationController extends Controller
         ]);
 
         if ($user) {
-            return redirect()->route('login')->with('message', 'Registration successfully done!');
+            return redirect()->route('login')->with('success', 'Registration successfully done!');
         } else {
             return redirect()->back()->with('error', 'Something went wrong!');
         }

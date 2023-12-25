@@ -15,6 +15,9 @@ const props = defineProps({
     comments: {
         type: Array,
     },
+    errors: {
+        type: Object,
+    },
 });
 
 const page = usePage();
@@ -27,8 +30,11 @@ function comment_post() {
     form.post("/comment-post", {
         preserveScroll: true,
         onSuccess: () => {
-            flashMessage(page.props.flash.message);
+            flashMessage("success", page.props.flash.success);
             form.reset();
+        },
+        onError: () => {
+            flashMessage("error", props.errors.body);
         },
     });
 }

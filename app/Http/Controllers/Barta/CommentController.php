@@ -13,6 +13,6 @@ class CommentController extends Controller
     {
         $commentService->comment_post($request->all());
 
-        return redirect()->back()->with('message', 'Comment posted successfully!');
+        return redirect()->back()->with('success', 'Comment posted successfully!');
     }
 }
