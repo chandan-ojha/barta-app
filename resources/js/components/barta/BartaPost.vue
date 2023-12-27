@@ -15,11 +15,17 @@ function barta_post() {
     form.post("/barta-post", {
         preserveScroll: true,
         onSuccess: () => {
-            flashMessage("success", page.props.flash.success);
+            flashMessage({
+                type: "success",
+                message: page.props.flash.success,
+            });
             form.reset();
         },
         onError: () => {
-            flashMessage("error", props.errors.body);
+            flashMessage({
+                type: "error",
+                message: props.errors.body,
+            });
         },
     });
 }
