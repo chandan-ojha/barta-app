@@ -1,13 +1,21 @@
 <script setup>
 import { ref } from "vue";
-import { format } from 'date-fns'
-const dropDownOpen = ref(false);
+import { format } from "date-fns";
+const showMenu = ref(0);
 
 const props = defineProps({
     comments: {
         type: Array,
     },
 });
+
+const toggleMenu = (commentId) => {
+    if (showMenu.value === commentId) {
+        showMenu.value = 0;
+    } else {
+        showMenu.value = commentId;
+    }
+};
 </script>
 
 <template>
@@ -54,7 +62,7 @@ const props = defineProps({
                             <div class="relative inline-block text-left">
                                 <div>
                                     <button
-                                        @click="dropDownOpen = !dropDownOpen"
+                                        @click="toggleMenu(comment.id)"
                                         type="button"
                                         class="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600"
                                         id="menu-0-button"
@@ -76,7 +84,7 @@ const props = defineProps({
                                 </div>
                                 <!-- Dropdown menu -->
                                 <div
-                                    v-show="dropDownOpen"
+                                    v-show="showMenu === comment.id"
                                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                     role="menu"
                                     aria-orientation="vertical"
@@ -113,7 +121,14 @@ const props = defineProps({
 
                 <!-- Date Created -->
                 <div class="flex items-center gap-2 text-gray-500 text-xs">
-                    <span class="">{{ format(new Date(comment.created_at), 'MMMM dd, yyyy') }}</span>
+                    <span class="">
+                        {{
+                            format(
+                                new Date(comment.created_at),
+                                "MMMM dd, yyyy"
+                            )
+                        }}
+                    </span>
                 </div>
             </div>
             <!-- /Comments -->

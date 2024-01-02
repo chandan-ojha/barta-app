@@ -6,7 +6,7 @@ import { flashMessage } from "../utils/functions";
 import NavBar from "./Shared/NavBar.vue";
 import Footer from "./Shared/Footer.vue";
 import Comments from "../components/comment/Comments.vue";
-const dropDownOpen = ref(false);
+const showMenu = ref(false);
 
 const props = defineProps({
     barta: {
@@ -88,7 +88,7 @@ function comment_post() {
                             <div class="relative inline-block text-left">
                                 <div>
                                     <button
-                                        @click="dropDownOpen = !dropDownOpen"
+                                        @click="showMenu = !showMenu"
                                         type="button"
                                         class="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600"
                                         id="menu-0-button"
@@ -110,7 +110,7 @@ function comment_post() {
                                 </div>
                                 <!-- Dropdown menu -->
                                 <div
-                                    v-show="dropDownOpen"
+                                    v-show="showMenu"
                                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                     role="menu"
                                     aria-orientation="vertical"

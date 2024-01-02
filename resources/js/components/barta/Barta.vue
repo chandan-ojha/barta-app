@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { format } from "date-fns";
-const dropDownOpen = ref(false);
+const showMenu = ref(0);
 
 const props = defineProps({
     bartas: {
@@ -13,9 +13,12 @@ const props = defineProps({
     },
 });
 
-//toggle dropdown
-const toggleDropDown = () => {
-    dropDownOpen.value = !dropDownOpen.value;
+const toggleMenu = (bartaId) => {
+    if (showMenu.value === bartaId) {
+        showMenu.value = 0;
+    } else {
+        showMenu.value = bartaId;
+    }
 };
 </script>
 
@@ -65,7 +68,7 @@ const toggleDropDown = () => {
                     <div class="relative inline-block text-left">
                         <div>
                             <button
-                                @click="toggleDropDown"
+                                @click="toggleMenu(barta.id)"
                                 type="button"
                                 class="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600"
                                 id="menu-0-button"
@@ -85,7 +88,7 @@ const toggleDropDown = () => {
                         </div>
                         <!-- Dropdown menu -->
                         <div
-                            v-show="dropDownOpen"
+                            v-show="showMenu === barta.id"
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu"
                             aria-orientation="vertical"
