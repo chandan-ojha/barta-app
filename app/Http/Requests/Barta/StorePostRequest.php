@@ -4,13 +4,11 @@ namespace App\Http\Requests\Barta;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest
-{
+class StorePostRequest extends FormRequest {
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
-    {
+    public function authorize(): bool {
         return true;
     }
 
@@ -19,10 +17,20 @@ class StorePostRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
+    public function rules(): array {
         return [
-            'body' => 'required'
+            'body' => 'required',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array {
+        return [
+            'body.required' => 'Please write something!',
         ];
     }
 }
