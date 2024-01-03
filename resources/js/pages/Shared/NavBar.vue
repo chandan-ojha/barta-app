@@ -1,11 +1,23 @@
 <script setup>
 import { ref, computed } from "vue";
-import { Link, usePage } from "@inertiajs/vue3";
+import {router, Link, usePage } from "@inertiajs/vue3";
 const mobileMenuOpen = ref(false);
 const dropDownOpen = ref(false);
 const page = usePage();
 
 const username = computed(() => page.props.auth.user.username);
+
+function logout() {
+    router.post("/logout", {
+        preserveScroll: true,
+        onSuccess: () => {
+            flashMessage({
+                type: "success",
+                message: page.props.flash.success,
+            });
+        },
+    });
+}
 </script>
 
 <template>
@@ -149,8 +161,8 @@ const username = computed(() => page.props.auth.user.username);
                                 >Edit Profile
                             </Link>
                             <Link
-                                href="/logout"
-                                method="post"
+                                href="#"
+                                @click="logout"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
