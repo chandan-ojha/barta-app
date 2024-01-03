@@ -18,6 +18,7 @@ class AppController extends Controller
             'BartaApp',
             [
                 'bartas' => $bartas,
+                //TODO: working on barta delete permission issue
                 'can' => [
                     'barta_delete' => Auth::user()->can('delete', $bartas->first()),
                 ],
