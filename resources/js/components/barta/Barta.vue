@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { router, Link, usePage } from "@inertiajs/vue3";
 import { format } from "date-fns";
+import { flashMessage } from "../../utils/functions";
 const showMenu = ref(0);
+const page = usePage();
 
 const props = defineProps({
     bartas: {
@@ -18,6 +20,20 @@ const toggleMenu = (bartaId) => {
         showMenu.value = 0;
     } else {
         showMenu.value = bartaId;
+    }
+};
+
+function barta_delete(bartaId) {
+    if (confirm("Are you sure you want to delete this barta?")) {
+        router.delete(`/barta-delete/${bartaId}`, {
+            preserveScroll: true,
+            onSuccess: () => {
+                flashMessage({
+                    type: "success",
+                    message: page.props.flash.success,
+                });
+            },
+        });
     }
 };
 </script>
@@ -115,7 +131,8 @@ const toggleMenu = (bartaId) => {
                             </a>
                             <Link
                                 v-if="props.can.barta_delete"
-                                :href="`/barta-delete/${barta.id}`"
+                                @click="barta_delete(barta.id)"
+                                href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
