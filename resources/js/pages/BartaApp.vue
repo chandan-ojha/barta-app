@@ -9,9 +9,6 @@ const props = defineProps({
     bartas: {
         type: Array,
     },
-    can: {
-        type: Object,
-    },
     errors: {
         type: Object,
     },
@@ -31,7 +28,7 @@ const props = defineProps({
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
             <!-- Barta Card -->
-            <Barta :bartas="props.bartas" :can="props.can" />
+            <Barta :bartas="props.bartas" />
             <!-- /Barta Card -->
         </section>
         <!-- /Newsfeed -->

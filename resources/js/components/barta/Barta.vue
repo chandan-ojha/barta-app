@@ -10,9 +10,6 @@ const props = defineProps({
     bartas: {
         type: Array,
     },
-    can: {
-        type: Object,
-    },
 });
 
 const toggleMenu = (bartaId) => {
@@ -130,7 +127,7 @@ function barta_delete(bartaId) {
                                 Edit
                             </a>
                             <Link
-                                v-if="props.can.barta_delete"
+                                v-if="page.props.auth.user.id === barta.user_id"
                                 @click="barta_delete(barta.id)"
                                 href="#"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
