@@ -52,6 +52,14 @@ function logout() {
                         </Link>
                     </div>
                 </div>
+                <!-- Search input -->
+                <form action="" method="POST" class="flex items-center">
+                    <input
+                        type="text"
+                        placeholder="Search..."
+                        class="border-2 border-gray-300 bg-white h-10 px-11 pr-16 rounded-full text-sm focus:outline-none"
+                    />
+                </form>
                 <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
                     <!-- This Button Should Be Hidden on Mobile Devices -->
                     <button
