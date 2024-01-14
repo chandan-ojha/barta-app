@@ -53,7 +53,7 @@ function logout() {
                     </div>
                 </div>
                 <!-- Search input -->
-                <form action="" method="POST" class="flex items-center">
+                <form action="#" method="#" class="flex items-center">
                     <input
                         type="text"
                         placeholder="Search..."
