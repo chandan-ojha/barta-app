@@ -36,7 +36,6 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
     Route::get('/barta-detail/{id}', [AppController::class, 'barta_detail'])->name('barta-detail');
-    Route::get('/get-all-barta', [AppController::class, 'get_all_barta'])->name('get-all-barta');
     Route::post('/barta-post', [PostController::class, 'barta_post'])->name('barta-post');
     Route::delete('/barta-delete/{id}', [PostController::class, 'barta_delete'])->name('barta-delete');
     Route::post('/comment-post', [CommentController::class, 'comment_post'])->name('comment-post');
