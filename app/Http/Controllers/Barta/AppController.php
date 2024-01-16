@@ -12,7 +12,7 @@ class AppController extends Controller
     //barta app
     public function barta_app()
     {
-        $bartas = Post::orderBy('created_at', 'desc')->get();
+        $bartas = Post::orderBy('created_at', 'desc')->withLikes()->get();
 
         return Inertia::render(
             'BartaApp',
