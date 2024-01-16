@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Barta\AppController;
 use App\Http\Controllers\Barta\PostController;
+use App\Http\Controllers\Barta\PostLikesController;
 use App\Http\Controllers\Barta\CommentController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,10 +35,17 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
+    /* Barta Post */
     Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
     Route::get('/barta-detail/{id}', [AppController::class, 'barta_detail'])->name('barta-detail');
     Route::post('/barta-post', [PostController::class, 'barta_post'])->name('barta-post');
     Route::delete('/barta-delete/{id}', [PostController::class, 'barta_delete'])->name('barta-delete');
+
+    /* Barta Post Likes */
+    Route::post('posts/{post}/like', [PostLikesController::class, 'store']);
+    Route::delete('posts/{post}/like', [PostLikesController::class, 'destroy']);
+
+    /* Barta Post Comments */
     Route::post('/comment-post', [CommentController::class, 'comment_post'])->name('comment-post');
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 });
