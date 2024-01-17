@@ -12,7 +12,13 @@ class AppController extends Controller
     //barta app
     public function barta_app()
     {
+        $user = Auth::user();
         $bartas = Post::orderBy('created_at', 'desc')->withLikes()->get();
+
+        foreach ($bartas as $barta) {
+            $barta->is_liked = $barta->isLikedBy($user);
+            $barta->is_disliked = $barta->isDislikedBy($user);
+        }
 
         return Inertia::render(
             'BartaApp',

@@ -21,8 +21,13 @@ function barta_like(bartaId) {
         @click="barta_like(props.barta.id)"
         as="button"
         type="button"
-        class="-m-2 flex gap-2 text-xs items-center rounded-full p-2 hover:text-gray-800"
-        :class="props.barta.likes ? 'text-blue-600' : 'text-gray-600'"
+        class="-m-2 flex gap-2 text-xs items-center rounded-full p-2"
+        :class="[
+            props.barta.is_liked ? 'text-blue-600' : 'text-gray-600',
+            props.barta.is_liked
+                ? 'hover:text-blue-800'
+                : 'hover:text-gray-800',
+        ]"
     >
         <span class="sr-only">Like</span>
         <svg
