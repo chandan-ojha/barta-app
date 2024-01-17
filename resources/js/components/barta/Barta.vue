@@ -198,7 +198,7 @@ function barta_delete(bartaId) {
                             />
                         </svg>
 
-                        <p>{{ barta.total_comments }}</p>
+                        <p>{{ barta.total_comments ?? 0 }}</p>
                     </Link>
                     <!-- /Comment Button -->
                 </div>
