@@ -35,6 +35,11 @@ class AppController extends Controller
     public function barta_detail($id)
     {
         $barta = Post::find($id);
+
+        if (!$barta) {
+            return redirect()->route('barta-app');
+        }
+
         $comments = $barta->comments()->orderBy('created_at', 'desc')->get();
 
         return Inertia::render(

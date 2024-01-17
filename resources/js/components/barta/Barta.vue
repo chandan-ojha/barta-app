@@ -227,7 +227,7 @@ function barta_delete(bartaId) {
 
                         <p>3</p>
                     </Link>
-                    <!-- /Like Button -->
+                    <!-- /Share Button -->
                 </div>
             </div>
             <!-- /Card Bottom Action Buttons -->
