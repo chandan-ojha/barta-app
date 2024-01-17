@@ -48,4 +48,5 @@ Route::middleware('auth')->group(function () {
     /* Barta Post Comments */
     Route::post('/comment-post', [CommentController::class, 'comment_post'])->name('comment-post');
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
+    Route::delete('/comment-delete/{id}', [CommentController::class, 'comment_delete'])->name('comment-delete');
 });

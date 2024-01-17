@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from "vue";
+import { router, Link, usePage } from "@inertiajs/vue3";
+import { flashMessage } from "../../utils/functions";
 import { format } from "date-fns";
 const showMenu = ref(0);
-
+const page = usePage();
 const props = defineProps({
     comments: {
         type: Array,
@@ -16,6 +18,19 @@ const toggleMenu = (commentId) => {
         showMenu.value = commentId;
     }
 };
+
+//comment delete
+function comment_delete(commentId) {
+    router.delete(`/comment-delete/${commentId}`, {
+        preserveScroll: true,
+        onSuccess: () => {
+            flashMessage({
+                type: "success",
+                message: page.props.flash.success,
+            });
+        },
+    });
+}
 </script>
 
 <template>
@@ -97,16 +112,23 @@ const toggleMenu = (commentId) => {
                                         role="menuitem"
                                         tabindex="-1"
                                         id="user-menu-item-0"
-                                        >Edit</a
                                     >
-                                    <a
+                                        Edit
+                                    </a>
+                                    <Link
+                                        v-if="
+                                            page.props.auth.user.id ===
+                                            comment.user_id
+                                        "
+                                        @click="comment_delete(comment.id)"
                                         href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem"
                                         tabindex="-1"
                                         id="user-menu-item-1"
-                                        >Delete</a
                                     >
+                                        Delete
+                                    </Link>
                                 </div>
                             </div>
                         </div>
