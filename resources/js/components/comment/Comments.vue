@@ -55,19 +55,23 @@ function comment_delete(commentId) {
                             <div
                                 class="text-gray-900 flex flex-col min-w-0 flex-1"
                             >
-                                <a
-                                    href="profile.html"
+                                <Link
+                                    href="#"
                                     class="hover:underline font-semibold line-clamp-1"
                                 >
-                                    Tamim
-                                </a>
+                                    {{ comment.user.name }}
+                                </Link>
 
-                                <a
-                                    href="profile.html"
+                                <Link
+                                    href="#"
                                     class="hover:underline text-sm text-gray-500 line-clamp-1"
                                 >
-                                    @tamim
-                                </a>
+                                    @{{
+                                        comment.user.name
+                                            .split(" ")[0]
+                                            .toLowerCase()
+                                    }}
+                                </Link>
                             </div>
                             <!-- /User Info -->
                         </div>

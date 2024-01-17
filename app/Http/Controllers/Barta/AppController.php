@@ -14,6 +14,9 @@ class AppController extends Controller
     {
         $user = Auth::user();
         $bartas = Post::orderBy('created_at', 'desc')
+            ->with([
+                'user:id,name',
+            ])
             ->withLikes()
             ->withComments()
             ->get();
@@ -40,7 +43,14 @@ class AppController extends Controller
             return redirect()->route('barta-app');
         }
 
-        $comments = $barta->comments()->orderBy('created_at', 'desc')->get();
+        $barta->load('user:id,name');
+
+        $comments = $barta->comments()
+            ->with([
+                'user:id,name',
+            ])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return Inertia::render(
             'BartaDetail',

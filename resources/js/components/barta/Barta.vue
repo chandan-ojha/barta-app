@@ -65,7 +65,7 @@ function barta_delete(bartaId) {
                             preserve-scroll
                             class="hover:underline font-semibold line-clamp-1"
                         >
-                            Chandan Ojha
+                            {{ barta.user.name }}
                         </Link>
 
                         <Link
@@ -73,7 +73,7 @@ function barta_delete(bartaId) {
                             preserve-scroll
                             class="hover:underline text-sm text-gray-500 line-clamp-1"
                         >
-                            @chandan
+                            @{{ barta.user.name.split(" ")[0].toLowerCase() }}
                         </Link>
                     </div>
                     <!-- /User Info -->

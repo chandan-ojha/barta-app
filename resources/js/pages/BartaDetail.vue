@@ -82,19 +82,23 @@ function comment_post() {
                             <div
                                 class="text-gray-900 flex flex-col min-w-0 flex-1"
                             >
-                                <a
+                                <Link
                                     href="#"
                                     class="hover:underline font-semibold line-clamp-1"
                                 >
-                                    Chandan
-                                </a>
+                                    {{ props.barta.user.name }}
+                                </Link>
 
-                                <a
+                                <Link
                                     href="#"
                                     class="hover:underline text-sm text-gray-500 line-clamp-1"
                                 >
-                                    @imchandan
-                                </a>
+                                    @{{
+                                        barta.user.name
+                                            .split(" ")[0]
+                                            .toLowerCase()
+                                    }}
+                                </Link>
                             </div>
                             <!-- /User Info -->
                         </div>
