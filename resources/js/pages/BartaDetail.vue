@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { useForm, usePage } from "@inertiajs/vue3";
+import { router, Link, useForm, usePage } from "@inertiajs/vue3";
 import { format } from "date-fns";
 import { flashMessage } from "../utils/functions";
 import NavBar from "./Shared/NavBar.vue";
@@ -26,6 +26,22 @@ const form = useForm({
     body: "",
 });
 
+//barta delete
+function barta_delete(bartaId) {
+    if (confirm("Are you sure you want to delete this barta?")) {
+        router.delete(`/barta-delete/${bartaId}`, {
+            preserveScroll: true,
+            onSuccess: () => {
+                flashMessage({
+                    type: "success",
+                    message: page.props.flash.success,
+                });
+            },
+        });
+    }
+}
+
+//comment post
 function comment_post() {
     form.post("/comment-post", {
         preserveScroll: true,
@@ -123,16 +139,32 @@ function comment_post() {
                                         role="menuitem"
                                         tabindex="-1"
                                         id="user-menu-item-0"
-                                        >Edit</a
                                     >
+                                        Share
+                                    </a>
                                     <a
                                         href="#"
                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem"
                                         tabindex="-1"
-                                        id="user-menu-item-1"
-                                        >Delete</a
+                                        id="user-menu-item-0"
                                     >
+                                        Edit
+                                    </a>
+                                    <Link
+                                        v-if="
+                                            page.props.auth.user.id ===
+                                            barta.user_id
+                                        "
+                                        @click="barta_delete(barta.id)"
+                                        href="#"
+                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem"
+                                        tabindex="-1"
+                                        id="user-menu-item-1"
+                                    >
+                                        Delete
+                                    </Link>
                                 </div>
                             </div>
                         </div>
