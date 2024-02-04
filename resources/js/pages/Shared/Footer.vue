@@ -36,9 +36,15 @@ import { Link } from "@inertiajs/vue3";
                 </ul>
             </div>
             <hr class="my-6 sm:mx-auto border-gray-700 lg:my-8" />
-            <span class="block text-sm sm:text-center text-gray-200"
-                >© 2023 <Link href="/" class="hover:underline">Barta</Link>. All
-                Rights Reserved.
+            <span class="block text-sm sm:text-center text-gray-200">
+                © {{ new Date().getFullYear() }}
+                <a
+                    href="https://github.com/chandan-ojha/barta-app"
+                    class="hover:underline"
+                    target="_blank"
+                >
+                    Barta</a
+                >. All Rights Reserved.
             </span>
         </div>
     </footer>

@@ -52,7 +52,9 @@ function barta_delete(bartaId) {
                     <div class="flex-shrink-0">
                         <img
                             class="h-10 w-10 rounded-full object-cover"
-                            src="https://avatars.githubusercontent.com/u/61087593"
+                            :src="`https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${encodeURIComponent(
+                                barta.user.name
+                            )}`"
                             alt="Chandan"
                         />
                     </div>
