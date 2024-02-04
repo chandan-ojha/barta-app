@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import {router, Link, usePage } from "@inertiajs/vue3";
+import { router, Link, usePage } from "@inertiajs/vue3";
 const mobileMenuOpen = ref(false);
 const dropDownOpen = ref(false);
 const page = usePage();
@@ -152,7 +152,7 @@ function logout() {
                                 {{ username }}
                             </Link>
                             <Link
-                                href="#"
+                                href="/profile"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
@@ -161,7 +161,7 @@ function logout() {
                                 Your Profile
                             </Link>
                             <Link
-                                href="#"
+                                href="/profile/edit"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
@@ -245,17 +245,17 @@ function logout() {
                 </div>
                 <div class="mt-3 space-y-1">
                     <Link
-                        href="#"
+                        href="/profile"
                         class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                         >Your Profile
                     </Link>
                     <Link
-                        href="#"
+                        href="/profile/edit"
                         class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                         >Edit Profile
                     </Link>
                     <Link
-                        href="#"
+                        @click="logout"
                         class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                         >Sign out
                     </Link>

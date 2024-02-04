@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegistrationController;
+use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Barta\AppController;
 use App\Http\Controllers\Barta\PostController;
 use App\Http\Controllers\Barta\PostLikesController;
@@ -35,6 +36,10 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
+    /* User Profile */
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile-edit');
+
     /* Barta Post */
     Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
     Route::get('/barta-detail/{id}', [AppController::class, 'barta_detail'])->name('barta-detail');
