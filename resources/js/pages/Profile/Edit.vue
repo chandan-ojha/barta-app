@@ -1,6 +1,34 @@
 <script setup>
+import { Link, useForm, usePage } from "@inertiajs/vue3";
+import { flashMessage } from "../../utils/functions";
 import NavBar from "../Shared/NavBar.vue";
 import Footer from "../Shared/Footer.vue";
+
+defineProps(["errors"]);
+
+const page = usePage();
+
+const form = useForm({
+    first_name: "",
+    last_name: "",
+    avatar: "",
+    email: "",
+    password: "",
+    bio: "",
+});
+
+function update_profile() {
+    form.post("/profile/update", {
+        preserveScroll: true,
+        onSuccess: () => {
+            flashMessage({
+                type: "success",
+                message: page.props.flash.success,
+            });
+            form.reset();
+        },
+    });
+}
 </script>
 
 <template>
@@ -10,7 +38,7 @@ import Footer from "../Shared/Footer.vue";
         class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen"
     >
         <!-- Profile Edit Form -->
-        <form>
+        <form @submit.prevent="update_profile">
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-xl font-semibold leading-7 text-gray-900">
@@ -61,13 +89,20 @@ import Footer from "../Shared/Footer.vue";
                                 >
                                 <div class="mt-2">
                                     <input
+                                        v-model="form.first_name"
                                         type="text"
                                         name="first-name"
                                         id="first-name"
                                         autocomplete="given-name"
-                                        value="Chandan"
                                         class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
+                                </div>
+                                <!-- display error message -->
+                                <div class="mt-2 text-sm text-red-600">
+                                    <p
+                                        v-if="form.errors.first_name"
+                                        v-text="form.errors.first_name"
+                                    ></p>
                                 </div>
                             </div>
 
@@ -79,13 +114,20 @@ import Footer from "../Shared/Footer.vue";
                                 >
                                 <div class="mt-2">
                                     <input
+                                        v-model="form.last_name"
                                         type="text"
                                         name="last-name"
                                         id="last-name"
-                                        value="Ojha"
                                         autocomplete="family-name"
                                         class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
+                                </div>
+                                <!-- display error message -->
+                                <div class="mt-2 text-sm text-red-600">
+                                    <p
+                                        v-if="form.errors.last_name"
+                                        v-text="form.errors.last_name"
+                                    ></p>
                                 </div>
                             </div>
 
@@ -97,13 +139,20 @@ import Footer from "../Shared/Footer.vue";
                                 >
                                 <div class="mt-2">
                                     <input
+                                        v-model="form.email"
                                         id="email"
                                         name="email"
                                         type="email"
                                         autocomplete="email"
-                                        value="chandan@gmail.com"
                                         class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                     />
+                                </div>
+                                <!-- display error message -->
+                                <div class="mt-2 text-sm text-red-600">
+                                    <p
+                                        v-if="form.errors.email"
+                                        v-text="form.errors.email"
+                                    ></p>
                                 </div>
                             </div>
 
@@ -115,6 +164,7 @@ import Footer from "../Shared/Footer.vue";
                                 >
                                 <div class="mt-2">
                                     <input
+                                        v-model="form.password"
                                         type="password"
                                         name="password"
                                         id="password"
@@ -137,12 +187,12 @@ import Footer from "../Shared/Footer.vue";
                             >
                             <div class="mt-2">
                                 <textarea
+                                    v-model="form.bio"
                                     id="bio"
                                     name="bio"
                                     rows="3"
                                     class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                                 >
-Less Talk, More Code 💻
                                 </textarea>
                             </div>
                             <p class="mt-3 text-sm leading-6 text-gray-600">
