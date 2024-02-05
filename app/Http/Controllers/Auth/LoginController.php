@@ -54,7 +54,7 @@ class LoginController extends Controller
             return redirect('/');
         } else {
             $new_user = User::create([
-                'name' => $user->name,
+                'first_name' => $user->first_name,
                 'email' => $user->email,
                 'google_id' => $user->id,
                 'password' => Hash::make(Str::random(24)),

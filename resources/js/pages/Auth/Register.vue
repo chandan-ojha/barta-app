@@ -1,14 +1,16 @@
 <script setup>
 import { Link, useForm, usePage } from "@inertiajs/vue3";
 import { flashMessage } from "../../utils/functions";
+
 defineProps(["errors"]);
 
 const page = usePage();
 const form = useForm({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     password: "",
-    password_confirmation: "",
+    //password_confirmation: "",
 });
 
 function create_user() {
@@ -45,21 +47,21 @@ function create_user() {
 
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form class="space-y-6" @submit.prevent="create_user">
-                    <!-- Name -->
+                    <!-- First Name -->
                     <div>
                         <label
                             for="first_name"
                             class="block text-sm font-medium leading-6 text-gray-900"
                         >
-                            Name
+                            First Name
                         </label>
                         <div class="mt-2">
                             <input
-                                v-model="form.name"
-                                id="name"
-                                name="name"
+                                v-model="form.first_name"
+                                id="first_name"
+                                name="first_name"
                                 type="text"
-                                autocomplete="name"
+                                autocomplete="first_name"
                                 placeholder="Chandan"
                                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                             />
@@ -67,12 +69,38 @@ function create_user() {
                         <!-- display error message -->
                         <div class="mt-2 text-sm text-red-600">
                             <p
-                                v-if="form.errors.name"
-                                v-text="form.errors.name"
+                                v-if="form.errors.first_name"
+                                v-text="form.errors.first_name"
                             ></p>
                         </div>
                     </div>
-
+                    <!-- Last Name -->
+                    <div>
+                        <label
+                            for="last_name"
+                            class="block text-sm font-medium leading-6 text-gray-900"
+                        >
+                            Last Name
+                        </label>
+                        <div class="mt-2">
+                            <input
+                                v-model="form.last_name"
+                                id="last_name"
+                                name="last_name"
+                                type="text"
+                                autocomplete="last_name"
+                                placeholder="Ojha"
+                                class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
+                            />
+                        </div>
+                        <!-- display error message -->
+                        <div class="mt-2 text-sm text-red-600">
+                            <p
+                                v-if="form.errors.last_name"
+                                v-text="form.errors.last_name"
+                            ></p>
+                        </div>
+                    </div>
                     <!-- Email -->
                     <div>
                         <label
@@ -129,7 +157,7 @@ function create_user() {
                     </div>
 
                     <!-- Confirm Password -->
-                    <div>
+                    <!--<div>
                         <label
                             for="password"
                             class="block text-sm font-medium leading-6 text-gray-900"
@@ -147,7 +175,7 @@ function create_user() {
                                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6"
                             />
                         </div>
-                    </div>
+                    </div>-->
 
                     <div>
                         <button
