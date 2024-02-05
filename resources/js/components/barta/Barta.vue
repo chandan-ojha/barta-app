@@ -52,9 +52,14 @@ function barta_delete(bartaId) {
                     <div class="flex-shrink-0">
                         <img
                             class="h-10 w-10 rounded-full object-cover"
-                            :src="`https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=${encodeURIComponent(
-                                barta.user.name
-                            )}`"
+                            :src="
+                                'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' +
+                                encodeURIComponent(
+                                    barta.user.first_name +
+                                        ' ' +
+                                        barta.user.last_name
+                                )
+                            "
                             alt="Chandan"
                         />
                     </div>
@@ -67,7 +72,8 @@ function barta_delete(bartaId) {
                             preserve-scroll
                             class="hover:underline font-semibold line-clamp-1"
                         >
-                            {{ barta.user.name }}
+                            {{ barta.user.first_name }}
+                            {{ barta.user.last_name }}
                         </Link>
 
                         <Link
@@ -75,7 +81,11 @@ function barta_delete(bartaId) {
                             preserve-scroll
                             class="hover:underline text-sm text-gray-500 line-clamp-1"
                         >
-                            @{{ barta.user.name.split(" ")[0].toLowerCase() }}
+                            @{{
+                                barta.user.first_name
+                                    .split(" ")[0]
+                                    .toLowerCase()
+                            }}
                         </Link>
                     </div>
                     <!-- /User Info -->

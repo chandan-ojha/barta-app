@@ -86,7 +86,8 @@ function comment_post() {
                                     href="#"
                                     class="hover:underline font-semibold line-clamp-1"
                                 >
-                                    {{ props.barta.user.name }}
+                                    {{ props.barta.user.first_name }}
+                                    {{ props.barta.user.last_name }}
                                 </Link>
 
                                 <Link
@@ -94,7 +95,7 @@ function comment_post() {
                                     class="hover:underline text-sm text-gray-500 line-clamp-1"
                                 >
                                     @{{
-                                        barta.user.name
+                                        barta.user.first_name
                                             .split(" ")[0]
                                             .toLowerCase()
                                     }}

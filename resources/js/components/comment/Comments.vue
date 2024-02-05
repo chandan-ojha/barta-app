@@ -59,7 +59,8 @@ function comment_delete(commentId) {
                                     href="#"
                                     class="hover:underline font-semibold line-clamp-1"
                                 >
-                                    {{ comment.user.name }}
+                                    {{ comment.user.first_name }}
+                                    {{ comment.user.last_name }}
                                 </Link>
 
                                 <Link
@@ -67,7 +68,7 @@ function comment_delete(commentId) {
                                     class="hover:underline text-sm text-gray-500 line-clamp-1"
                                 >
                                     @{{
-                                        comment.user.name
+                                        comment.user.first_name
                                             .split(" ")[0]
                                             .toLowerCase()
                                     }}
