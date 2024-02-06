@@ -11,9 +11,11 @@ use Inertia\Inertia;
 
 class ProfileController extends Controller
 {
-    public function index($id)
+    public function show($id)
     {
         $user = User::query()->findOrFail($id);
+
+        $this->authorize('view', $user);
 
         return Inertia::render('Profile/Index', [
             'user' => $user
@@ -24,6 +26,8 @@ class ProfileController extends Controller
     {
         $user = User::query()->findOrFail($id);
 
+        $this->authorize('view', $user);
+
         return Inertia::render('Profile/Edit', [
             'user' => $user
         ]);
@@ -32,10 +36,11 @@ class ProfileController extends Controller
 
     public function update(StoreProfileRequest $request, User $user, ProfileService $profileService)
     {
-        //$this->authorize('update', $user);
+        $this->authorize('update', $user);
 
         $profileService->update($user, $request->validated());
 
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }
+
 }

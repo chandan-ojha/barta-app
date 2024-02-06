@@ -37,22 +37,26 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     /* User Profile */
-    Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile');
     Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile-edit');
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile-update');
 
-    /* Barta Post */
+    /* Barta App */
     Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
     Route::get('/barta-detail/{id}', [AppController::class, 'barta_detail'])->name('barta-detail');
+
+    /* Posts */
     Route::post('/barta-post', [PostController::class, 'barta_post'])->name('barta-post');
     Route::delete('/barta-delete/{id}', [PostController::class, 'barta_delete'])->name('barta-delete');
 
-    /* Barta Post Likes */
+    /* Likes */
     Route::post('posts/{post}/like', [PostLikesController::class, 'store']);
     Route::delete('posts/{post}/like', [PostLikesController::class, 'destroy']);
 
-    /* Barta Post Comments */
+    /* Comments */
     Route::post('/comment-post', [CommentController::class, 'comment_post'])->name('comment-post');
-    Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
     Route::delete('/comment-delete/{id}', [CommentController::class, 'comment_delete'])->name('comment-delete');
+
+    /* User Logout */
+    Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
 });
