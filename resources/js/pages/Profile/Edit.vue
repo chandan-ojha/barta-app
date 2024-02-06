@@ -17,8 +17,8 @@ const form = useForm({
     bio: "",
 });
 
-function update_profile() {
-    form.post("/profile/update", {
+function update_profile(id) {
+    form.post(`/profile/update/${id}`, {
         preserveScroll: true,
         onSuccess: () => {
             flashMessage({
@@ -38,7 +38,7 @@ function update_profile() {
         class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen"
     >
         <!-- Profile Edit Form -->
-        <form @submit.prevent="update_profile">
+        <form @submit.prevent="update_profile($page.props.auth.user.id)">
             <div class="space-y-12">
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-xl font-semibold leading-7 text-gray-900">

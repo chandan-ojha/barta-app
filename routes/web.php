@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     /* User Profile */
     Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile');
     Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile-edit');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile-update');
+    Route::post('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile-update');
 
     /* Barta App */
     Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');

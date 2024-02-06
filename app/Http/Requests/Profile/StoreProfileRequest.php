@@ -24,7 +24,11 @@ class StoreProfileRequest extends FormRequest
         return [
             'first_name' => 'required',
             'last_name' => 'required',
+            'avatar' => 'nullable|image',
             'email' => 'required|email',
+            'bio' => 'nullable',
+            'password' => 'nullable|confirmed|min:8',
+            'google_id' => 'nullable',
         ];
     }
 }

@@ -26,7 +26,7 @@ class ProfileController extends Controller
     {
         $user = User::query()->findOrFail($id);
 
-        $this->authorize('view', $user);
+        $this->authorize('update', $user);
 
         return Inertia::render('Profile/Edit', [
             'user' => $user
@@ -34,8 +34,10 @@ class ProfileController extends Controller
 
     }
 
-    public function update(StoreProfileRequest $request, User $user, ProfileService $profileService)
+    public function update(StoreProfileRequest $request, $id, ProfileService $profileService)
     {
+        $user = User::query()->findOrFail($id);
+
         $this->authorize('update', $user);
 
         $profileService->update($user, $request->validated());

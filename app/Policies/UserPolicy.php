@@ -18,9 +18,9 @@ class UserPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, User $model)
+    public function view(User $user, User $model): bool
     {
-        //
+        return (int)$user->id === (int)$model->id;
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return (int) $user->id === (int) $model->id;
+        return (int)$user->id === (int)$model->id;
     }
 
     /**
