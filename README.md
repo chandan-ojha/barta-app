@@ -1,4 +1,4 @@
-![Project screenshot](./public/images/project-screenshot.PNG)
+![Project screenshot](./public/images/project-screenshot.png)
 
 <h3 align="center">Barta App</h3>
 
@@ -10,7 +10,7 @@ to share their thoughts, ideas, and experiences with others.
 #### Features
 - User authentication
 - User profile
-- Barta posts, comments, likes, and many more
+- Barta posts, comments, likes, and many more features are on the way in development.
 
 #### Tech used
 
