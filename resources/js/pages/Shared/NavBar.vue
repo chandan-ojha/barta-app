@@ -152,7 +152,7 @@ function logout() {
                                 {{ username }}
                             </Link>
                             <Link
-                                href="/profile"
+                                :href="`/profile/${page.props.auth.user.id}`"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
@@ -161,7 +161,7 @@ function logout() {
                                 Your Profile
                             </Link>
                             <Link
-                                href="/profile/edit"
+                                :href="`/profile/edit/${page.props.auth.user.id}`"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem"
                                 tabindex="-1"
@@ -245,12 +245,12 @@ function logout() {
                 </div>
                 <div class="mt-3 space-y-1">
                     <Link
-                        href="/profile"
+                        :href="`/profile/${page.props.auth.user.id}`"
                         class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                         >Your Profile
                     </Link>
                     <Link
-                        href="/profile/edit"
+                        :href="`/profile/edit/${page.props.auth.user.id}`"
                         class="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                         >Edit Profile
                     </Link>

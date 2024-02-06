@@ -11,14 +11,23 @@ use Inertia\Inertia;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return Inertia::render('Profile/Index');
+        $user = User::query()->findOrFail($id);
+
+        return Inertia::render('Profile/Index', [
+            'user' => $user
+        ]);
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return Inertia::render('Profile/Edit');
+        $user = User::query()->findOrFail($id);
+
+        return Inertia::render('Profile/Edit', [
+            'user' => $user
+        ]);
+
     }
 
     public function update(StoreProfileRequest $request, User $user, ProfileService $profileService)
