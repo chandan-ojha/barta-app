@@ -28,7 +28,7 @@ const props = defineProps({
                 <div class="relative">
                     <img
                         class="w-32 h-32 rounded-full border-2 border-gray-800"
-                        src="https://avatars.githubusercontent.com/u/61087593"
+                        :src="props.user.avatar"
                         alt="Chandan Ojha"
                     />
                     <span

@@ -1,11 +1,9 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref } from "vue";
 import { router, Link, usePage } from "@inertiajs/vue3";
 const mobileMenuOpen = ref(false);
 const dropDownOpen = ref(false);
 const page = usePage();
-
-const username = computed(() => page.props.auth.user.username);
 
 function logout() {
     router.post("/logout", {
@@ -127,8 +125,8 @@ function logout() {
                                 <span class="sr-only">Open user menu</span>
                                 <img
                                     class="h-8 w-8 rounded-full"
-                                    src="https://avatars.githubusercontent.com/u/61087593"
-                                    alt="Chandan Ojha"
+                                    :src="page.props.auth.user.avatar"
+                                    :alt="page.props.auth.user.first_name"
                                 />
                             </button>
                         </div>
@@ -149,7 +147,8 @@ function logout() {
                                 tabindex="-1"
                                 id="user-menu-item-0"
                             >
-                                {{ username }}
+                                {{ page.props.auth.user.first_name }}
+                                {{ page.props.auth.user.last_name }}
                             </Link>
                             <Link
                                 :href="`/profile/${page.props.auth.user.id}`"

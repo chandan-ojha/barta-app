@@ -43,7 +43,7 @@ function barta_post() {
                 <div class="flex-shrink-0">
                     <img
                         class="h-10 w-10 rounded-full object-cover"
-                        src="https://avatars.githubusercontent.com/u/61087593"
+                        :src="page.props.auth.user.avatar"
                         alt="Chandan"
                     />
                 </div>
@@ -55,7 +55,7 @@ function barta_post() {
                         class="block w-full p-2 pt-2 text-gray-900 rounded-lg border-none outline-none focus:ring-0 focus:ring-offset-0"
                         name="barta"
                         rows="2"
-                        placeholder="What's going on, Chandan?"
+                        :placeholder="`What's going on, ${page.props.auth.user.first_name}?`"
                         v-model="form.body"
                     ></textarea>
                 </div>

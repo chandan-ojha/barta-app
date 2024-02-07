@@ -13,6 +13,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public const DEFAULT_AVATAR_BASE_URL = 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -61,4 +63,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function getDefaultAvatarAttribute(): string
+    {
+        return self::DEFAULT_AVATAR_BASE_URL . urlencode($this->first_name . ' ' . $this->last_name);
+    }
+
+    public function getImageUrlAttribute(): string
+    {
+        return $this->avatar ? asset('storage/' . $this->avatar) : $this->getDefaultAvatarAttribute();
+    }
+
 }

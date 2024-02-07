@@ -13,9 +13,11 @@ class ProfileController extends Controller
 {
     public function show($id)
     {
-        $user = User::query()->findOrFail($id)->load('posts', 'comments');
+        $user = User::query()->with('posts', 'comments')->findOrFail($id);
 
         $this->authorize('view', $user);
+
+        $user->avatar = $user->image_url;
 
         return Inertia::render('Profile/Index', [
             'user' => $user
@@ -27,6 +29,8 @@ class ProfileController extends Controller
         $user = User::query()->findOrFail($id);
 
         $this->authorize('update', $user);
+
+        $user->avatar = $user->image_url;
 
         return Inertia::render('Profile/Edit', [
             'user' => $user
