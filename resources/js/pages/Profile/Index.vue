@@ -4,6 +4,12 @@ import { Link } from "@inertiajs/vue3";
 import NavBar from "../Shared/NavBar.vue";
 import Footer from "../Shared/Footer.vue";
 const showMenu = ref(0);
+
+const props = defineProps({
+    user: {
+        type: Object,
+    },
+});
 </script>
 
 <template>
@@ -33,8 +39,10 @@ const showMenu = ref(0);
 
                 <!-- User Meta -->
                 <div>
-                    <h1 class="font-bold md:text-2xl">Chandan Ojha</h1>
-                    <p class="text-gray-700">Less Talk, More Code 💻</p>
+                    <h1 class="font-bold md:text-2xl">
+                        {{ props.user.first_name }} {{ props.user.last_name }}
+                    </h1>
+                    <p class="text-gray-700">{{ props.user.bio }}</p>
                 </div>
                 <!-- / User Meta -->
             </div>
@@ -46,13 +54,17 @@ const showMenu = ref(0);
             >
                 <!-- Total Posts Count -->
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="sm:text-xl font-bold">3</h4>
+                    <h4 class="sm:text-xl font-bold">
+                        {{ props.user.posts.length }}
+                    </h4>
                     <p class="text-gray-600">Posts</p>
                 </div>
 
                 <!-- Total Comments Count -->
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="sm:text-xl font-bold">14</h4>
+                    <h4 class="sm:text-xl font-bold">
+                        {{ props.user.comments.length }}
+                    </h4>
                     <p class="text-gray-600">Comments</p>
                 </div>
             </div>

@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function show($id)
     {
-        $user = User::query()->findOrFail($id);
+        $user = User::query()->findOrFail($id)->load('posts', 'comments');
 
         $this->authorize('view', $user);
 
@@ -40,7 +40,7 @@ class ProfileController extends Controller
 
         $this->authorize('update', $user);
 
-        $profileService->update($user, $request->validated());
+        $profileService->update($user, $request->only('first_name', 'last_name', 'avatar', 'bio'));
 
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }
