@@ -44,7 +44,11 @@ class ProfileController extends Controller
 
         $this->authorize('update', $user);
 
-        $profileService->update($user, $request->only('first_name', 'last_name', 'avatar', 'bio'));
+        $profileService->update(
+            $user,
+            $request->validated(),
+            $request->hasFile('avatar') ? $request->file('avatar') : null
+        );
 
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }
