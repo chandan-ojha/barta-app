@@ -15,7 +15,7 @@ class AppController extends Controller
         $user = Auth::user();
         $bartas = Post::orderBy('created_at', 'desc')
             ->with([
-                'user:id,first_name,last_name',
+                'user:id,first_name,last_name,avatar',
             ])
             ->withLikes()
             ->withComments()
@@ -24,6 +24,7 @@ class AppController extends Controller
         foreach ($bartas as $barta) {
             $barta->is_liked = $barta->isLikedBy($user);
             $barta->is_disliked = $barta->isDislikedBy($user);
+            $barta->user->avatar = $barta->user->image_url;
         }
 
         return Inertia::render(

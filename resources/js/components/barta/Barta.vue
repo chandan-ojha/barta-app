@@ -52,15 +52,8 @@ function barta_delete(bartaId) {
                     <div class="flex-shrink-0">
                         <img
                             class="h-10 w-10 rounded-full object-cover"
-                            :src="
-                                'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' +
-                                encodeURIComponent(
-                                    barta.user.first_name +
-                                        ' ' +
-                                        barta.user.last_name
-                                )
-                            "
-                            alt="Chandan"
+                            :src="barta.user.avatar"
+                            :alt="barta.user.first_name"
                         />
                     </div>
                     <!-- /User Avatar -->
