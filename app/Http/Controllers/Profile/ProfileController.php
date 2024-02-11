@@ -15,8 +15,6 @@ class ProfileController extends Controller
     {
         $user = User::query()->with('posts', 'comments')->findOrFail($id);
 
-        $this->authorize('view', $user);
-
         $user->avatar = $user->image_url;
 
         return Inertia::render('Profile/Index', [

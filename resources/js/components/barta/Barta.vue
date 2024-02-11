@@ -68,7 +68,7 @@ function barta_delete(bartaId) {
                     <!-- User Info -->
                     <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                         <Link
-                            href="#"
+                            :href="`/profile/${barta.user_id}`"
                             preserve-scroll
                             class="hover:underline font-semibold line-clamp-1"
                         >
@@ -77,7 +77,7 @@ function barta_delete(bartaId) {
                         </Link>
 
                         <Link
-                            href="#"
+                            :href="`/profile/${barta.user_id}`"
                             preserve-scroll
                             class="hover:underline text-sm text-gray-500 line-clamp-1"
                         >

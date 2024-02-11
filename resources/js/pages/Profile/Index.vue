@@ -72,6 +72,7 @@ const props = defineProps({
 
             <!-- Edit Profile Button (Only visible to the profile owner) -->
             <Link
+                v-if="props.user.id === $page.props.auth.user.id"
                 :href="`/profile/edit/${$page.props.auth.user.id}`"
                 type="button"
                 class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700"
