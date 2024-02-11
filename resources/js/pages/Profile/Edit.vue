@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from "vue";
 import { Link, useForm, usePage } from "@inertiajs/vue3";
 import { flashMessage } from "../../utils/functions";
 import NavBar from "../Shared/NavBar.vue";
@@ -23,6 +24,21 @@ const form = useForm({
     //password: "",
     bio: props.user.bio,
 });
+
+const avatar_src = ref(form.avatar);
+
+// Handle file upload
+const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            avatar_src.value = event.target.result;
+        };
+        reader.readAsDataURL(file);
+        form.avatar = file;
+    }
+};
 
 function update_profile(id) {
     form.post(`/profile/update/${id}`, {
@@ -64,24 +80,24 @@ function update_profile(id) {
                             </label>
                             <div class="mt-2 flex items-center gap-x-3">
                                 <input
-                                    class="hidden"
+                                    ref="fileInput"
                                     type="file"
                                     name="avatar"
                                     id="avatar"
+                                    class="hidden"
+                                    @change="handleFileUpload"
                                 />
                                 <img
+                                    :src="avatar_src"
                                     class="h-32 w-32 rounded-full"
-                                    :src="form.avatar"
-                                    alt="Chandan Ojha"
+                                    :alt="form.first_name"
                                 />
                                 <label for="avatar">
-                                    <!-- TODO: working on change profile image upload functionality -->
-                                    <button
-                                        type="button"
+                                    <div
                                         class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                                     >
                                         Change
-                                    </button>
+                                    </div>
                                 </label>
                             </div>
                         </div>
