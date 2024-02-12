@@ -78,12 +78,21 @@ function comment_post() {
                 <header>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3">
+                            <!-- User Avatar -->
+                            <div class="flex-shrink-0">
+                                <img
+                                    class="h-10 w-10 rounded-full object-cover"
+                                    :src="props.barta.user.avatar"
+                                    :alt="props.barta.user.first_name"
+                                />
+                            </div>
+                            <!-- /User Avatar -->
                             <!-- User Info -->
                             <div
                                 class="text-gray-900 flex flex-col min-w-0 flex-1"
                             >
                                 <Link
-                                    href="#"
+                                    :href="`/profile/${props.barta.user.id}`"
                                     class="hover:underline font-semibold line-clamp-1"
                                 >
                                     {{ props.barta.user.first_name }}
@@ -91,7 +100,7 @@ function comment_post() {
                                 </Link>
 
                                 <Link
-                                    href="#"
+                                    :href="`/profile/${props.barta.user.id}`"
                                     class="hover:underline text-sm text-gray-500 line-clamp-1"
                                 >
                                     @{{
@@ -193,7 +202,7 @@ function comment_post() {
                         )
                     }}</span>
                     <span class="">•</span>
-                    <span>3 comments</span>
+                    <span>{{ comments.length }} comments</span>
                     <span class="">•</span>
                     <span>450 views</span>
                 </div>
@@ -204,15 +213,15 @@ function comment_post() {
                 <form @submit.prevent="comment_post">
                     <!-- Create Comment Card Top -->
                     <div>
-                        <div class="flex items-start /space-x-3/">
+                        <div class="flex items-start space-x-3">
                             <!-- User Avatar -->
-                            <!-- <div class="flex-shrink-0">
+                            <div class="flex-shrink-0">
                                 <img
                                     class="h-10 w-10 rounded-full object-cover"
-                                    src="https://avatars.githubusercontent.com/u/831997"
-                                    alt="Ahmed Shamim"
+                                    :src="page.props.auth.user.avatar"
+                                    :alt="page.props.auth.user.first_name"
                                 />
-                            </div> -->
+                            </div>
                             <!-- /User Avatar -->
 
                             <!-- Auto Resizing Comment Box -->

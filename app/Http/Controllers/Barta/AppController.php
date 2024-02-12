@@ -44,14 +44,20 @@ class AppController extends Controller
             return redirect()->route('barta-app');
         }
 
-        $barta->load('user:id,first_name,last_name');
+        $barta->load('user:id,first_name,last_name,avatar');
+
+        $barta->user->avatar = $barta->user->image_url;
 
         $comments = $barta->comments()
             ->with([
-                'user:id,first_name,last_name',
+                'user:id,first_name,last_name,avatar',
             ])
             ->orderBy('created_at', 'desc')
             ->get();
+
+        foreach ($comments as $comment) {
+            $comment->user->avatar = $comment->user->image_url;
+        }
 
         return Inertia::render(
             'BartaDetail',
