@@ -1,11 +1,13 @@
 <script setup>
 import { ref } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { router, Link, usePage } from "@inertiajs/vue3";
 import { format } from "date-fns";
+import { flashMessage } from "../../utils/functions";
 import NavBar from "../Shared/NavBar.vue";
 import Footer from "../Shared/Footer.vue";
 import BartaPost from "../../components/barta/BartaPost.vue";
 
+const page = usePage();
 const showMenu = ref(0);
 
 const props = defineProps({
@@ -16,6 +18,29 @@ const props = defineProps({
         type: Object,
     },
 });
+
+const toggleMenu = (bartaId) => {
+    if (showMenu.value === bartaId) {
+        showMenu.value = 0;
+    } else {
+        showMenu.value = bartaId;
+    }
+};
+
+//barta delete
+function barta_delete(bartaId) {
+    if (confirm("Are you sure you want to delete this barta?")) {
+        router.delete(`/barta-delete/${bartaId}`, {
+            preserveScroll: true,
+            onSuccess: () => {
+                flashMessage({
+                    type: "success",
+                    message: page.props.flash.success,
+                });
+            },
+        });
+    }
+}
 </script>
 
 <template>
@@ -158,7 +183,7 @@ const props = defineProps({
                         <div class="relative inline-block text-left">
                             <div>
                                 <button
-                                    @click="showMenu = !showMenu"
+                                    @click="toggleMenu(barta.id)"
                                     type="button"
                                     class="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600"
                                     id="menu-0-button"
@@ -178,7 +203,7 @@ const props = defineProps({
                             </div>
                             <!-- Dropdown menu -->
                             <div
-                                v-show="showMenu"
+                                v-show="showMenu === barta.id"
                                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 role="menu"
                                 aria-orientation="vertical"
@@ -191,16 +216,23 @@ const props = defineProps({
                                     role="menuitem"
                                     tabindex="-1"
                                     id="user-menu-item-0"
-                                    >Edit</a
                                 >
-                                <a
+                                    Edit
+                                </a>
+                                <Link
+                                    v-if="
+                                        page.props.auth.user.id ===
+                                        barta.user_id
+                                    "
+                                    @click="barta_delete(barta.id)"
                                     href="#"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem"
                                     tabindex="-1"
                                     id="user-menu-item-1"
-                                    >Delete</a
                                 >
+                                    Delete
+                                </Link>
                             </div>
                         </div>
                     </div>
