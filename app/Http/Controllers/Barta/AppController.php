@@ -28,7 +28,7 @@ class AppController extends Controller
                 return $barta;
             });
 
-        return Inertia::render('BartaApp', ['bartas' => $bartas]);
+        return Inertia::render('BartaApp', compact('bartas'));
     }
 
     /*
@@ -57,13 +57,7 @@ class AppController extends Controller
             $comment->user->avatar = $comment->user->image_url;
         }
 
-        return Inertia::render(
-            'BartaDetail',
-            [
-                'barta' => $barta,
-                'comments' => $comments,
-            ]
-        );
+        return Inertia::render('BartaDetail', compact('barta', 'comments'));
     }
 
 }
