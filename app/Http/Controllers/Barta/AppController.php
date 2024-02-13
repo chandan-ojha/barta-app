@@ -9,33 +9,31 @@ use Inertia\Inertia;
 
 class AppController extends Controller
 {
-    //barta app
+    /*
+     * Barta App
+    */
     public function barta_app()
     {
         $user = Auth::user();
-        $bartas = Post::orderBy('created_at', 'desc')
-            ->with([
-                'user:id,first_name,last_name,avatar',
-            ])
+
+        $bartas = Post::with(['user:id,first_name,last_name,avatar'])
             ->withLikes()
             ->withComments()
-            ->get();
+            ->latest()
+            ->get()
+            ->map(function ($barta) use ($user) {
+                $barta->is_liked = $barta->isLikedBy($user);
+                $barta->is_disliked = $barta->isDislikedBy($user);
+                $barta->user->avatar = $barta->user->image_url;
+                return $barta;
+            });
 
-        foreach ($bartas as $barta) {
-            $barta->is_liked = $barta->isLikedBy($user);
-            $barta->is_disliked = $barta->isDislikedBy($user);
-            $barta->user->avatar = $barta->user->image_url;
-        }
-
-        return Inertia::render(
-            'BartaApp',
-            [
-                'bartas' => $bartas,
-            ]
-        );
+        return Inertia::render('BartaApp', ['bartas' => $bartas]);
     }
 
-    //barta detail
+    /*
+     * Barta Detail
+    */
     public function barta_detail($id)
     {
         $barta = Post::find($id);
@@ -67,4 +65,5 @@ class AppController extends Controller
             ]
         );
     }
+
 }
