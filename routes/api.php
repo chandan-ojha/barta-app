@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
+Route::get('/barta-search', [AppController::class, 'barta_search']);

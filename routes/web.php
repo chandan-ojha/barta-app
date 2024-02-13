@@ -44,6 +44,7 @@ Route::middleware('auth')->group(function () {
     /* Barta App */
     Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
     Route::get('/barta-detail/{id}', [AppController::class, 'barta_detail'])->name('barta-detail');
+    Route::get('/barta-search', [AppController::class, 'barta_search']);
 
     /* Posts */
     Route::post('/barta-post', [PostController::class, 'barta_post'])->name('barta-post');

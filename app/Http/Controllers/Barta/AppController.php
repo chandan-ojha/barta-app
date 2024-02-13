@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Barta;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Post;
+use App\Services\Barta\AppService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -58,6 +61,18 @@ class AppController extends Controller
         }
 
         return Inertia::render('BartaDetail', compact('barta', 'comments'));
+    }
+
+    /*
+     * Barta Search
+    */
+    public function barta_search(Request $request, AppService $appService)
+    {
+        $search_key = $request->input('search_key');
+
+        $bartas = $appService->get(['search_key' => $search_key]);
+
+        return response()->json($bartas);
     }
 
 }
