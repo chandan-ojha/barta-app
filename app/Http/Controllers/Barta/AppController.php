@@ -15,11 +15,16 @@ class AppController extends Controller
     /*
      * Barta App
     */
-    public function barta_app()
+    public function barta_app(Request $request)
     {
+        $search_key = $request->input('search_key');
+
         $user = Auth::user();
 
         $bartas = Post::with(['user:id,first_name,last_name,avatar'])
+            ->when($search_key, function ($query, $search_key) {
+                return $query->where('body', 'like', '%' . $search_key . '%');
+            })
             ->withLikes()
             ->withComments()
             ->latest()
@@ -30,6 +35,10 @@ class AppController extends Controller
                 $barta->user->avatar = $barta->user->image_url;
                 return $barta;
             });
+
+        if ($bartas->isEmpty()) {
+            return response()->json(['message' => 'Barta not found'], 404);
+        }
 
         return Inertia::render('BartaApp', compact('bartas'));
     }
