@@ -10,6 +10,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .component("Head", Head)
+            .mixin({ methods: { route } })
             .mount(el);
     },
     title: (title) => `${title} | Barta App`,

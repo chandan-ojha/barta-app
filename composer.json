@@ -11,7 +11,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.11",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "tightenco/ziggy": "^1.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
