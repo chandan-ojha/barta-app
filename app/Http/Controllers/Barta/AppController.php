@@ -36,9 +36,9 @@ class AppController extends Controller
                 return $barta;
             });
 
-        if ($bartas->isEmpty()) {
+        /*if ($bartas->isEmpty()) {
             return response()->json(['message' => 'Barta not found'], 404);
-        }
+        }*/
 
         return Inertia::render('BartaApp', compact('bartas'));
     }

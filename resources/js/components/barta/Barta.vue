@@ -239,6 +239,22 @@ function barta_delete(bartaId) {
         </footer>
         <!-- /Barta Card Bottom -->
     </article>
+
+    <!-- No Barta Found message -->
+    <div
+        v-if="props.bartas.length === 0"
+        class="text-center text-gray-500 py-8"
+    >
+        <div
+            class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6"
+        >
+            <p class="text-lg font-semibold mb-2">No Barta Found</p>
+            <p class="text-sm">
+                Please check back later or try a different search!
+            </p>
+        </div>
+    </div>
+    <!-- /No Barta Found message -->
 </template>
 
 <style scoped></style>
