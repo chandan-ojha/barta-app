@@ -80,7 +80,9 @@ class AppController extends Controller
     {
         $search_key = $request->input('search_key');
 
-        $bartas = $appService->get(['search_key' => $search_key]);
+        $bartas = $appService->get([
+            'body' => $search_key
+        ]);
 
         return response()->json($bartas);
     }
