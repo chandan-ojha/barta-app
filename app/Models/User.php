@@ -71,7 +71,11 @@ class User extends Authenticatable
 
     public function getImageUrlAttribute(): string
     {
-        return $this->avatar ? asset('storage/' . $this->avatar) : $this->getDefaultAvatarAttribute();
+        if ($this->avatar) {
+            return $this->avatar;
+        } else {
+            return $this->default_avatar;
+        }
     }
 
 }
