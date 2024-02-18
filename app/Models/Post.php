@@ -26,4 +26,11 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            return $query->where('body', 'like', '%' . $search . '%');
+        });
+    }
 }

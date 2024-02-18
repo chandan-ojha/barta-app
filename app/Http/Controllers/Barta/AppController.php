@@ -22,9 +22,9 @@ class AppController extends Controller
         $user = Auth::user();
 
         $bartas = Post::with(['user:id,first_name,last_name,avatar'])
-            ->when($search_key, function ($query, $search_key) {
-                return $query->where('body', 'like', '%' . $search_key . '%');
-            })
+            ->filter([
+                'search' => $search_key,
+            ])
             ->withLikes()
             ->withComments()
             ->latest()
@@ -73,7 +73,8 @@ class AppController extends Controller
     }
 
     /*
-     * Barta Search
+     * Barta Search (Not Implemented this method)
+     * Testing purpose for Pipeline Design Pattern (Still not working)
     */
     public function barta_search(Request $request, AppService $appService)
     {
