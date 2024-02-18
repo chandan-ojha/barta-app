@@ -9,8 +9,10 @@ to share their thoughts, ideas, and experiences with others.
 
 #### Features
 - User authentication
-- User profile
-- Barta posts, comments, likes, and many more features are on the way in development.
+- User profile view and update
+- Barta create, edit and delete
+- Barta likes, dislikes and comments
+- Barta search and many more features are on the way in development.
 
 #### Tech used
 
