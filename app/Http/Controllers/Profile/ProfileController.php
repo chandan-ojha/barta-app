@@ -22,7 +22,7 @@ class ProfileController extends Controller
             },
         ])
             ->where('id', $id)
-            ->select('id', 'first_name', 'last_name', 'avatar', 'bio', 'created_at')
+            ->select('id', 'first_name', 'last_name', 'bio', 'created_at')
             ->withCount([
                 'posts as total_posts',
                 'posts as total_comments' => function ($query) {
@@ -30,8 +30,6 @@ class ProfileController extends Controller
                 }
             ])
             ->firstOrFail();
-
-        $user->avatar = $user->image_url;
 
         return Inertia::render('Profile/Index', [
             'user' => $user
@@ -43,8 +41,6 @@ class ProfileController extends Controller
         $user = User::query()->findOrFail($id);
 
         $this->authorize('update', $user);
-
-        $user->avatar = $user->image_url;
 
         return Inertia::render('Profile/Edit', [
             'user' => $user

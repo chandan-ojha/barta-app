@@ -59,7 +59,7 @@ function barta_delete(bartaId) {
                 <div class="relative">
                     <img
                         class="w-32 h-32 rounded-full border-2 border-gray-800"
-                        :src="props.user.avatar"
+                        :src="props.user.avatar_path"
                         alt="Chandan Ojha"
                     />
                     <span
@@ -148,7 +148,7 @@ function barta_delete(bartaId) {
                         <div class="flex-shrink-0">
                             <img
                                 class="h-10 w-10 rounded-full object-cover"
-                                :src="props.user.avatar"
+                                :src="props.user.avatar_path"
                                 :alt="props.user.first_name"
                             />
                         </div>

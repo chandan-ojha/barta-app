@@ -19,7 +19,7 @@ const page = usePage();
 const form = useForm({
     first_name: props.user.first_name,
     last_name: props.user.last_name,
-    avatar: props.user.avatar,
+    avatar: props.user.avatar_path,
     //email: props.user.email,
     //password: "",
     bio: props.user.bio,
