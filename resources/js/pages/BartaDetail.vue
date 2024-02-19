@@ -82,7 +82,7 @@ function comment_post() {
                             <div class="flex-shrink-0">
                                 <img
                                     class="h-10 w-10 rounded-full object-cover"
-                                    :src="props.barta.user.avatar"
+                                    :src="props.barta.user.avatar_path"
                                     :alt="props.barta.user.first_name"
                                 />
                             </div>

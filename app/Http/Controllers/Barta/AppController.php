@@ -21,7 +21,7 @@ class AppController extends Controller
 
         $user = Auth::user();
 
-        $bartas = Post::with(['user:id,first_name,last_name,avatar'])
+        $bartas = Post::with(['user:id,first_name,last_name'])
             ->filter([
                 'search' => $search_key,
             ])
@@ -32,7 +32,6 @@ class AppController extends Controller
             ->map(function ($barta) use ($user) {
                 $barta->is_liked = $barta->isLikedBy($user);
                 $barta->is_disliked = $barta->isDislikedBy($user);
-                $barta->user->avatar = $barta->user->image_url;
                 return $barta;
             });
 
@@ -54,20 +53,14 @@ class AppController extends Controller
             return redirect()->route('barta-app');
         }
 
-        $barta->load('user:id,first_name,last_name,avatar');
-
-        $barta->user->avatar = $barta->user->image_url;
+        $barta->load('user:id,first_name,last_name');
 
         $comments = $barta->comments()
             ->with([
-                'user:id,first_name,last_name,avatar',
+                'user:id,first_name,last_name',
             ])
             ->orderBy('created_at', 'desc')
             ->get();
-
-        foreach ($comments as $comment) {
-            $comment->user->avatar = $comment->user->image_url;
-        }
 
         return Inertia::render('BartaDetail', compact('barta', 'comments'));
     }

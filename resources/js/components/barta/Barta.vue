@@ -52,7 +52,7 @@ function barta_delete(bartaId) {
                     <div class="flex-shrink-0">
                         <img
                             class="h-10 w-10 rounded-full object-cover"
-                            :src="barta.user.avatar"
+                            :src="barta.user.avatar_path"
                             :alt="barta.user.first_name"
                         />
                     </div>

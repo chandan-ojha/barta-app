@@ -56,7 +56,7 @@ function comment_delete(commentId) {
                             <div class="flex-shrink-0">
                                 <img
                                     class="h-10 w-10 rounded-full object-cover"
-                                    :src="comment.user.avatar"
+                                    :src="comment.user.avatar_path"
                                     :alt="comment.user.first_name"
                                 />
                             </div>

@@ -29,6 +29,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $appends = [
+        'avatar_path',
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -64,18 +68,14 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function getDefaultAvatarAttribute(): string
+    public function getDefaultAvatarPathAttribute(): string
     {
         return self::DEFAULT_AVATAR_BASE_URL . urlencode($this->first_name . ' ' . $this->last_name);
     }
 
-    public function getImageUrlAttribute(): string
+    public function getAvatarPathAttribute(): string
     {
-        if ($this->avatar) {
-            return $this->avatar;
-        } else {
-            return $this->default_avatar;
-        }
+        return $this->avatar ? asset('storage/' . $this->avatar) : $this->default_avatar_path;
     }
 
 }
