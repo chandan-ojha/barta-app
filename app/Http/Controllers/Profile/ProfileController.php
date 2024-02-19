@@ -22,7 +22,7 @@ class ProfileController extends Controller
             },
         ])
             ->where('id', $id)
-            ->select('id', 'first_name', 'last_name', 'bio', 'created_at')
+            ->select('id', 'first_name', 'last_name', 'avatar', 'bio', 'created_at')
             ->withCount([
                 'posts as total_posts',
                 'posts as total_comments' => function ($query) {

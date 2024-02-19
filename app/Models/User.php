@@ -68,14 +68,14 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function getDefaultAvatarPathAttribute(): string
+    public function getDefaultAvatarPath(): string
     {
         return self::DEFAULT_AVATAR_BASE_URL . urlencode($this->first_name . ' ' . $this->last_name);
     }
 
     public function getAvatarPathAttribute(): string
     {
-        return $this->avatar ? asset('storage/' . $this->avatar) : $this->default_avatar_path;
+        return $this->avatar ? asset('storage/' . $this->avatar) : $this->getDefaultAvatarPath();
     }
 
 }

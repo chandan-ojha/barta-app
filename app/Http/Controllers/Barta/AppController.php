@@ -21,7 +21,7 @@ class AppController extends Controller
 
         $user = Auth::user();
 
-        $bartas = Post::with(['user:id,first_name,last_name'])
+        $bartas = Post::with(['user:id,first_name,last_name,avatar'])
             ->filter([
                 'search' => $search_key,
             ])
@@ -53,11 +53,11 @@ class AppController extends Controller
             return redirect()->route('barta-app');
         }
 
-        $barta->load('user:id,first_name,last_name');
+        $barta->load('user:id,first_name,last_name,avatar');
 
         $comments = $barta->comments()
             ->with([
-                'user:id,first_name,last_name',
+                'user:id,first_name,last_name,avatar',
             ])
             ->orderBy('created_at', 'desc')
             ->get();
