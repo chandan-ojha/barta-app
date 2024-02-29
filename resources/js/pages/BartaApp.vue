@@ -11,6 +11,9 @@ const props = defineProps({
     bartas: {
         type: Array,
     },
+    tags: {
+        type: Array,
+    },
     followers: {
         type: Array,
     },
@@ -41,7 +44,7 @@ const props = defineProps({
         </main>
         <!-- Trending Topics & Follower List -->
         <div class="md:col-span-1">
-            <TrendingTopics />
+            <TrendingTopics :tags="props.tags" />
             <FollowersList :followers="props.followers" />
         </div>
     </div>

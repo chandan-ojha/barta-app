@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Barta;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
 use App\Models\User;
 use App\Models\Post;
 use App\Services\Barta\AppService;
@@ -35,6 +36,11 @@ class AppController extends Controller
                 return $barta;
             });
 
+        $tags = Tag::select('id', 'title')
+            ->latest()
+            ->limit(5)
+            ->get();
+
         $followers = User::select('id', 'first_name', 'last_name', 'avatar')
             ->latest()
             ->limit(3)
@@ -46,7 +52,7 @@ class AppController extends Controller
 
         return Inertia::render(
             'BartaApp',
-            compact('bartas', 'followers')
+            compact('bartas', 'followers', 'tags')
         );
     }
 
