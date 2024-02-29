@@ -35,11 +35,19 @@ class AppController extends Controller
                 return $barta;
             });
 
+        $followers = User::select('id', 'first_name', 'last_name', 'avatar')
+            ->latest()
+            ->limit(3)
+            ->get();
+
         /*if ($bartas->isEmpty()) {
             return response()->json(['message' => 'Barta not found'], 404);
         }*/
 
-        return Inertia::render('BartaApp', compact('bartas'));
+        return Inertia::render(
+            'BartaApp',
+            compact('bartas', 'followers')
+        );
     }
 
     /*
