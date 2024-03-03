@@ -28,6 +28,9 @@ function barta_filter_by_tag(tag) {
                     >
                         #{{ tag.title }}
                     </Link>
+                    <span class="block text-gray-500 text-sm">
+                        {{ tag.posts_count }} posts
+                    </span>
                 </li>
             </ul>
             <a

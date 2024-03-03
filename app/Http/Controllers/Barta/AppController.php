@@ -35,7 +35,8 @@ class AppController extends Controller
             });
 
         $tags = Tag::select('id', 'title')
-            ->latest()
+            ->withCount('posts')
+            ->orderBy('posts_count', 'desc')
             ->limit(5)
             ->get();
 
