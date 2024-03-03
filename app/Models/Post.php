@@ -37,6 +37,10 @@ class Post extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             return $query->where('body', 'like', '%' . $search . '%');
+        })->when($filters['tag'] ?? null, function ($query, $tag) {
+            return $query->whereHas('tags', function ($query) use ($tag) {
+                $query->where('title', $tag);
+            });
         });
     }
 }

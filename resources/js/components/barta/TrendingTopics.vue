@@ -1,10 +1,18 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
+
 const props = defineProps({
     tags: {
         type: Array,
     },
 });
+
+//barta filter by tag
+function barta_filter_by_tag(tag) {
+    router.get("/", {
+        tag: tag,
+    });
+}
 </script>
 
 <template>
@@ -13,7 +21,11 @@ const props = defineProps({
             <h2 class="text-xl font-bold mb-4">Trends for you</h2>
             <ul class="space-y-2">
                 <li v-for="tag in props.tags" :key="tag.id" class="mb-2">
-                    <Link href="#" class="font-semibold hover:underline">
+                    <Link
+                        href="#"
+                        @click="barta_filter_by_tag(tag.title)"
+                        class="font-semibold hover:underline"
+                    >
                         #{{ tag.title }}
                     </Link>
                 </li>
