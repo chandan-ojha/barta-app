@@ -98,6 +98,15 @@ function barta_delete(bartaId) {
                     </h4>
                     <p class="text-gray-600">Comments</p>
                 </div>
+
+                <!--Follow me-->
+                <div class="flex flex-col justify-center items-center">
+                    <button
+                        class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-3 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-gray-100 text-xs"
+                    >
+                        Follow Me
+                    </button>
+                </div>
             </div>
             <!-- /Profile Stats -->
 
