@@ -18,14 +18,12 @@ class AppController extends Controller
     */
     public function barta_app(Request $request)
     {
-        $search_key = $request->input('search_key');
+        $filters = $request->only('search', 'tag');
 
         $user = Auth::user();
 
         $bartas = Post::with(['user:id,first_name,last_name,avatar'])
-            ->filter([
-                'search' => $search_key,
-            ])
+            ->filter($filters)
             ->withLikes()
             ->withComments()
             ->latest()
@@ -42,13 +40,9 @@ class AppController extends Controller
             ->get();
 
         $followers = User::select('id', 'first_name', 'last_name', 'avatar')
-            ->latest()
+            ->inRandomOrder()
             ->limit(3)
             ->get();
-
-        /*if ($bartas->isEmpty()) {
-            return response()->json(['message' => 'Barta not found'], 404);
-        }*/
 
         return Inertia::render(
             'BartaApp',
