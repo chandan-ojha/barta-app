@@ -10,6 +10,9 @@ const props = defineProps({
     user: {
         type: Object,
     },
+    following_list: {
+        type: Array,
+    },
     errors: {
         type: Object,
     },
@@ -140,7 +143,7 @@ const showFollowingList = () => {
         <BartaList v-if="postFeed" :user="props.user" />
         <!-- User Specific Posts Feed -->
         <!-- User Following list -->
-        <FollowingList v-else />
+        <FollowingList v-else :following_list="props.following_list" />
         <!-- /User Following list -->
     </main>
     <Footer />

@@ -31,8 +31,11 @@ class ProfileController extends Controller
             ])
             ->firstOrFail();
 
+        $following_list = User::find($id)->follows()->get();
+
         return Inertia::render('Profile/Index', [
-            'user' => $user
+            'user' => $user,
+            'following_list' => $following_list
         ]);
     }
 
