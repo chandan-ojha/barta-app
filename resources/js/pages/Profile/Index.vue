@@ -5,7 +5,6 @@ import { format } from "date-fns";
 import { flashMessage } from "../../utils/functions";
 import NavBar from "../Shared/NavBar.vue";
 import Footer from "../Shared/Footer.vue";
-import BartaPost from "../../components/barta/BartaPost.vue";
 
 const page = usePage();
 const showMenu = ref(0);
@@ -79,43 +78,12 @@ function barta_delete(bartaId) {
             </div>
             <!-- /Profile Info -->
 
-            <!-- Profile Stats -->
-            <div
-                class="flex flex-row gap-16 justify-center text-center items-center"
-            >
-                <!-- Total Posts Count -->
-                <div class="flex flex-col justify-center items-center">
-                    <h4 class="sm:text-xl font-bold">
-                        {{ props.user.total_posts }}
-                    </h4>
-                    <p class="text-gray-600">Posts</p>
-                </div>
-
-                <!-- Total Comments Count -->
-                <div class="flex flex-col justify-center items-center">
-                    <h4 class="sm:text-xl font-bold">
-                        {{ props.user.total_comments }}
-                    </h4>
-                    <p class="text-gray-600">Comments</p>
-                </div>
-
-                <!--Follow me-->
-                <div class="flex flex-col justify-center items-center">
-                    <button
-                        class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-3 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-gray-100 text-xs"
-                    >
-                        Follow Me
-                    </button>
-                </div>
-            </div>
-            <!-- /Profile Stats -->
-
             <!-- Edit Profile Button (Only visible to the profile owner) -->
             <Link
                 v-if="props.user.id === $page.props.auth.user.id"
                 :href="`/profile/edit/${$page.props.auth.user.id}`"
                 type="button"
-                class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700"
+                class="-m-2 flex gap-2 items-center rounded-full px-3 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700 text-xs transition duration-300 ease-in-out transform hover:scale-105"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +91,7 @@ function barta_delete(bartaId) {
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
                     stroke="currentColor"
-                    class="w-5 h-5"
+                    class="w-4 h-4"
                 >
                     <path
                         stroke-linecap="round"
@@ -131,19 +99,53 @@ function barta_delete(bartaId) {
                         d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"
                     />
                 </svg>
-
-                Edit Profile
+                <span class="font-bold">Edit Profile</span>
             </Link>
             <!-- /Edit Profile Button -->
+
+            <!-- Profile Stats -->
+            <div
+                class="flex flex-row gap-11 justify-center text-center items-center"
+            >
+                <!-- Following-->
+                <div class="flex flex-col justify-center items-center">
+                    <h4 class="text-lg font-semibold">100</h4>
+                    <Link
+                        href="#"
+                        class="text-gray-600 text-xs font-bold hover:text-sky-500 transition duration-300"
+                    >
+                        Following
+                    </Link>
+                </div>
+
+                <!-- Followers-->
+                <div class="flex flex-col justify-center items-center">
+                    <h4 class="text-lg font-semibold">500</h4>
+                    <Link
+                        href="#"
+                        class="text-gray-600 text-xs font-bold hover:text-sky-500 transition duration-300"
+                    >
+                        Followers
+                    </Link>
+                </div>
+
+                <!--Follow me-->
+                <div
+                    v-show="props.user.id !== $page.props.auth.user.id"
+                    class="flex flex-col justify-center items-center"
+                >
+                    <button
+                        class="bg-black hover:bg-black text-white font-semibold py-2 px-3 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-gray-100 text-xs"
+                    >
+                        Follow Me
+                    </button>
+                </div>
+            </div>
+            <!-- /Profile Stats -->
         </section>
         <!-- /Cover Container -->
 
-        <!-- Barta Create Post Card -->
-        <BartaPost :errors="props.errors" />
-        <!-- /Barta Create Post Card -->
-
         <!-- User Specific Posts Feed -->
-        <!-- Barta Card -->
         <article
             v-for="barta in props.user.posts"
             :key="barta.id"
@@ -302,7 +304,6 @@ function barta_delete(bartaId) {
             </footer>
             <!-- /Barta Card Bottom -->
         </article>
-        <!-- /Barta Card -->
         <!-- User Specific Posts Feed -->
     </main>
     <Footer />
