@@ -7,6 +7,7 @@ use App\Http\Controllers\Barta\AppController;
 use App\Http\Controllers\Barta\PostController;
 use App\Http\Controllers\Barta\PostLikesController;
 use App\Http\Controllers\Barta\CommentController;
+use App\Http\Controllers\Profile\FollowsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,11 +37,6 @@ Route::middleware('guest')->group(function () {
 
 
 Route::middleware('auth')->group(function () {
-    /* User Profile */
-    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile');
-    Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile-edit');
-    Route::post('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile-update');
-
     /* Barta App */
     Route::get('/', [AppController::class, 'barta_app'])->name('barta-app');
     Route::get('/barta-detail/{id}', [AppController::class, 'barta_detail'])->name('barta-detail');
@@ -56,6 +52,14 @@ Route::middleware('auth')->group(function () {
     /* Comments */
     Route::post('/comment-post', [CommentController::class, 'comment_post'])->name('comment-post');
     Route::delete('/comment-delete/{id}', [CommentController::class, 'comment_delete'])->name('comment-delete');
+
+    /* User Profile */
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile-edit');
+    Route::post('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile-update');
+
+    /* User Follow */
+    Route::post('/profile/{user:id}/follow', [FollowsController::class, 'store'])->name('follow');
 
     /* User Logout */
     Route::post('logout', [LoginController::class, 'destroy'])->name('logout');

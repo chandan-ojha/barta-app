@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 import NavBar from "../Shared/NavBar.vue";
 import Footer from "../Shared/Footer.vue";
 import BartaList from "./BartaList.vue";
@@ -13,6 +13,9 @@ const props = defineProps({
     following_list: {
         type: Array,
     },
+    is_following: {
+        type: Boolean,
+    },
     errors: {
         type: Object,
     },
@@ -23,6 +26,13 @@ const postFeed = ref(true);
 const showFollowingList = () => {
     postFeed.value = false;
 };
+
+//user follow
+function followUser(userId) {
+    router.post(`/profile/${userId}/follow`, {
+        preserveScroll: true,
+    });
+}
 </script>
 
 <template>
@@ -130,11 +140,15 @@ const showFollowingList = () => {
                     v-show="props.user.id !== $page.props.auth.user.id"
                     class="flex flex-col justify-center items-center"
                 >
-                    <button
+                    <Link
+                        href="#"
+                        @click="followUser(props.user.id)"
+                        as="button"
+                        type="button"
                         class="bg-black hover:bg-black text-white font-semibold py-2 px-3 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-gray-100 text-xs"
                     >
-                        Follow Me
-                    </button>
+                        {{ props.is_following ? "Unfollow Me" : "Follow Me" }}
+                    </Link>
                 </div>
             </div>
             <!-- /Profile Stats -->
