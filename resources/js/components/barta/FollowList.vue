@@ -1,10 +1,17 @@
 <script setup>
-import { Link } from "@inertiajs/vue3";
+import { Link, router } from "@inertiajs/vue3";
 const props = defineProps({
-    followers: {
+    follow_list: {
         type: Array,
     },
 });
+
+//user follow
+function followUser(userId) {
+    router.post(`/profile/${userId}/follow`, {
+        preserveScroll: true,
+    });
+}
 </script>
 
 <template>
@@ -13,28 +20,28 @@ const props = defineProps({
             <h2 class="text-xl font-bold mb-4">Who to follow</h2>
             <div class="flex flex-col space-y-4">
                 <div
-                    v-for="follower in props.followers"
-                    :key="follower.id"
+                    v-for="follow in props.follow_list"
+                    :key="follow.id"
                     class="flex items-center justify-between"
                 >
                     <div class="flex items-center">
                         <img
-                            :src="follower.avatar_path"
-                            :alt="follower.first_name"
+                            :src="follow.avatar_path"
+                            :alt="follow.first_name"
                             class="h-10 w-10 rounded-full"
                         />
 
                         <div class="ml-4">
                             <Link
-                                :href="`/profile/${follower.id}`"
+                                :href="`/profile/${follow.id}`"
                                 class="font-semibold hover:underline"
                             >
-                                {{ follower.first_name }}
-                                {{ follower.last_name }}
+                                {{ follow.first_name }}
+                                {{ follow.last_name }}
                             </Link>
                             <p class="text-gray-500 text-sm">
                                 @{{
-                                    follower.first_name
+                                    follow.first_name
                                         .split(" ")[0]
                                         .toLowerCase()
                                 }}
@@ -42,11 +49,15 @@ const props = defineProps({
                         </div>
                     </div>
 
-                    <button
+                    <Link
+                        href="#"
+                        @click="followUser(follow.id)"
+                        as="button"
+                        type="button"
                         class="bg-black text-white px-2 py-1 rounded-full text-xs"
                     >
                         Follow
-                    </button>
+                    </Link>
                 </div>
             </div>
             <Link

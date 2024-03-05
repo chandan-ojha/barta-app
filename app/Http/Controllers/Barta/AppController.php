@@ -40,14 +40,14 @@ class AppController extends Controller
             ->limit(5)
             ->get();
 
-        $followers = User::select('id', 'first_name', 'last_name', 'avatar')
+        $follow_list = User::select('id', 'first_name', 'last_name', 'avatar')
             ->inRandomOrder()
             ->limit(3)
             ->get();
 
         return Inertia::render(
             'BartaApp',
-            compact('bartas', 'followers', 'tags')
+            compact('bartas', 'follow_list', 'tags')
         );
     }
 

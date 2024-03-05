@@ -5,7 +5,7 @@ import Footer from "./Shared/Footer.vue";
 import BartaPost from "../components/barta/BartaPost.vue";
 import Barta from "../components/barta/Barta.vue";
 import TrendingTopics from "../components/barta/TrendingTopics.vue";
-import FollowersList from "../components/barta/FollowersList.vue";
+import FollowList from "../components/barta/FollowList.vue";
 
 const props = defineProps({
     bartas: {
@@ -14,7 +14,7 @@ const props = defineProps({
     tags: {
         type: Array,
     },
-    followers: {
+    follow_list: {
         type: Array,
     },
     errors: {
@@ -45,7 +45,7 @@ const props = defineProps({
         <!-- Trending Topics & Follower List -->
         <div class="md:col-span-1">
             <TrendingTopics :tags="props.tags" />
-            <FollowersList :followers="props.followers" />
+            <FollowList :follow_list="props.follow_list" />
         </div>
     </div>
     <Footer />

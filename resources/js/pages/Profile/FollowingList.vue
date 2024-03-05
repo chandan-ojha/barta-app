@@ -1,9 +1,17 @@
 <script setup>
+import { Link, router } from "@inertiajs/vue3";
 const props = defineProps({
     following_list: {
         type: Array,
     },
 });
+
+//user follow
+function followUser(userId) {
+    router.post(`/profile/${userId}/follow`, {
+        preserveScroll: true,
+    });
+}
 </script>
 
 <template>
@@ -30,11 +38,15 @@ const props = defineProps({
                                 {{ following.last_name }}
                             </span>
                         </div>
-                        <button
+                        <Link
+                            href="#"
+                            @click="followUser(following.id)"
+                            as="button"
+                            type="button"
                             class="bg-black hover:bg-black text-white font-semibold py-2 px-3 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-gray-100 text-xs"
                         >
                             Unfollow
-                        </button>
+                        </Link>
                     </div>
                 </li>
             </ul>
