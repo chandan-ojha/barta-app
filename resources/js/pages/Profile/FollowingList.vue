@@ -12,7 +12,7 @@ const props = defineProps({
     >
         <div class="px-6 py-4">
             <h2 class="text-xl font-bold mb-4">Following</h2>
-            <ul>
+            <ul v-if="props.following_list.length > 0">
                 <li
                     v-for="following in props.following_list"
                     :key="following.id"
@@ -38,6 +38,9 @@ const props = defineProps({
                     </div>
                 </li>
             </ul>
+            <div v-else class="flex justify-center items-center h-24">
+                <p class="text-lg text-gray-500">No Following Yet!</p>
+            </div>
         </div>
     </div>
 </template>

@@ -104,7 +104,9 @@ const showFollowingList = () => {
                 </div>
                 <!-- Following-->
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="text-lg font-semibold">100</h4>
+                    <h4 class="text-lg font-semibold">
+                        {{ props.following_list.length }}
+                    </h4>
                     <button
                         @click="showFollowingList"
                         class="text-gray-600 text-xs font-bold hover:text-sky-500 transition duration-300"
@@ -115,7 +117,7 @@ const showFollowingList = () => {
 
                 <!-- Followers-->
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="text-lg font-semibold">500</h4>
+                    <h4 class="text-lg font-semibold">0</h4>
                     <button
                         class="text-gray-600 text-xs font-bold hover:text-sky-500 transition duration-300"
                     >
