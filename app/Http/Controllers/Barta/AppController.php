@@ -41,6 +41,12 @@ class AppController extends Controller
             ->get();
 
         $follow_list = User::select('id', 'first_name', 'last_name', 'avatar')
+            ->whereNotIn('id', function ($query) use ($user) {
+                $query->select('following_user_id')
+                    ->from('follows')
+                    ->where('user_id', $user->id);
+            })
+            ->where('id', '!=', $user->id)
             ->inRandomOrder()
             ->limit(3)
             ->get();
