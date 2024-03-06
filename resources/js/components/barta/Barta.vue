@@ -249,9 +249,7 @@ function barta_delete(bartaId) {
             class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6"
         >
             <p class="text-lg font-semibold mb-2">No Barta Found</p>
-            <p class="text-sm">
-                Please check back later or try a different search!
-            </p>
+            <p class="text-sm">Please check back later!</p>
         </div>
     </div>
     <!-- /No Barta Found message -->
