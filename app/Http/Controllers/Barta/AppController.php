@@ -23,7 +23,7 @@ class AppController extends Controller
         $user = Auth::user();
 
         $bartas = Post::with(['user:id,first_name,last_name,avatar'])
-            ->filter($filters)
+            ->filter($filters, $user)
             ->withLikes()
             ->withComments()
             ->latest()

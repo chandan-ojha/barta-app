@@ -33,9 +33,13 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeFilter($query, array $filters, User $user)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
+        $query->when(!isset($filters['search']) && !isset($filters['tag']), function ($query) use ($user) {
+            $friends = $user->follows()->pluck('id');
+            $query->whereIn('user_id', $friends)
+                ->orWhere('user_id', $user->id);
+        })->when($filters['search'] ?? null, function ($query, $search) {
             return $query->where('body', 'like', '%' . $search . '%');
         })->when($filters['tag'] ?? null, function ($query, $tag) {
             return $query->whereHas('tags', function ($query) use ($tag) {
