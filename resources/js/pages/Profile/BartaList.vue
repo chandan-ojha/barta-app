@@ -200,6 +200,22 @@ function barta_delete(bartaId) {
         </footer>
         <!-- /Barta Card Bottom -->
     </article>
+
+    <!-- No Post Found message -->
+    <div
+        v-if="props.user.posts.length === 0"
+        class="text-center text-gray-500 py-8"
+    >
+        <div
+            class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6"
+        >
+            <p class="text-lg font-semibold mb-2">No Post Found</p>
+            <p class="text-sm">
+                You have not posted any barta yet. Post your first barta now.
+            </p>
+        </div>
+    </div>
+    <!-- No Post Found message -->
 </template>
 
 <style scoped></style>
