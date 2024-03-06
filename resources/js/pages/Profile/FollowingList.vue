@@ -1,5 +1,10 @@
 <script setup>
 import { Link, router } from "@inertiajs/vue3";
+
+defineOptions({
+    inheritAttrs: false,
+});
+
 const props = defineProps({
     following_list: {
         type: Array,

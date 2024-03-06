@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { shallowRef } from "vue";
 import { Link, router } from "@inertiajs/vue3";
 import NavBar from "../Shared/NavBar.vue";
 import Footer from "../Shared/Footer.vue";
 import BartaList from "./BartaList.vue";
 import FollowingList from "./FollowingList.vue";
+import FollowersList from "./FollowersList.vue";
 
 const props = defineProps({
     user: {
@@ -16,16 +17,27 @@ const props = defineProps({
     is_following: {
         type: Boolean,
     },
+    followers_list: {
+        type: Array,
+    },
     errors: {
         type: Object,
     },
 });
 
-const postFeed = ref(true);
+const activeComponent = shallowRef(BartaList);
 
-const showFollowingList = () => {
-    postFeed.value = false;
-};
+function showBartaList() {
+    activeComponent.value = BartaList;
+}
+
+function showFollowingList() {
+    activeComponent.value = FollowingList;
+}
+
+function showFollowersList() {
+    activeComponent.value = FollowersList;
+}
 
 //user follow
 function followUser(userId) {
@@ -106,12 +118,13 @@ function followUser(userId) {
                         {{ props.user.total_posts }}
                     </h4>
                     <button
-                        @click="postFeed = true"
+                        @click="showBartaList"
                         class="text-gray-600 text-xs font-bold hover:text-sky-500 transition duration-300"
                     >
                         Posts
                     </button>
                 </div>
+
                 <!-- Following-->
                 <div class="flex flex-col justify-center items-center">
                     <h4 class="text-lg font-semibold">
@@ -127,8 +140,11 @@ function followUser(userId) {
 
                 <!-- Followers-->
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="text-lg font-semibold">0</h4>
+                    <h4 class="text-lg font-semibold">
+                        {{ props.followers_list.length }}
+                    </h4>
                     <button
+                        @click="showFollowersList"
                         class="text-gray-600 text-xs font-bold hover:text-sky-500 transition duration-300"
                     >
                         Followers
@@ -154,13 +170,8 @@ function followUser(userId) {
             <!-- /Profile Stats -->
         </section>
         <!-- /Cover Container -->
-
-        <!-- User Specific Posts Feed -->
-        <BartaList v-if="postFeed" :user="props.user" />
-        <!-- User Specific Posts Feed -->
-        <!-- User Following list -->
-        <FollowingList v-else :following_list="props.following_list" />
-        <!-- /User Following list -->
+        <!-- User Specific Posts Feed || Following list || Followers List-->
+        <component :is="activeComponent" v-bind="props" />
     </main>
     <Footer />
 </template>

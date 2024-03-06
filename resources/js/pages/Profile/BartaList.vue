@@ -7,6 +7,10 @@ import { flashMessage } from "../../utils/functions";
 const page = usePage();
 const showMenu = ref(0);
 
+defineOptions({
+    inheritAttrs: false,
+});
+
 const props = defineProps({
     user: {
         type: Object,
