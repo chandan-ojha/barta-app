@@ -35,10 +35,13 @@ class ProfileController extends Controller
 
         $following_list = User::find($id)->follows()->get();
 
+        $followers_list = User::find($id)->followers()->get();
+
         return Inertia::render('Profile/Index', [
             'user' => $user,
             'is_following' => $is_following,
-            'following_list' => $following_list
+            'following_list' => $following_list,
+            'followers_list' => $followers_list
         ]);
     }
 

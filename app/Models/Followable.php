@@ -44,4 +44,14 @@ trait Followable
         );
     }
 
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            User::class,
+            'follows',
+            'following_user_id',
+            'user_id'
+        );
+    }
+
 }
