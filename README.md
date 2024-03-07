@@ -10,9 +10,12 @@ to share their thoughts, ideas, and experiences with others.
 #### Features
 - User authentication
 - User profile view and update
+- User can see the list of Barta of the users they follow and their own Barta on the home page
 - Barta create, edit and delete
 - Barta likes, dislikes and comments
-- Barta search and many more features are on the way in development.
+- Barta search and filter by tags 
+- User can follow and unfollow other users
+- User can see the list of own Barta, followers and following in their profile page and many more features are on the way in development.
 
 #### Tech used
 
