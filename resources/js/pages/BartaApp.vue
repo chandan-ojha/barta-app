@@ -31,7 +31,7 @@ const props = defineProps({
             class="container max-w-xl mx-96 space-y-8 px-2 md:px-0 md:col-span-3 min-h-screen"
         >
             <!-- Barta Create Post Card -->
-            <BartaPost :errors="props.errors" />
+            <BartaPost :tags="props.tags" :errors="props.errors" />
             <!-- /Barta Create Post Card -->
 
             <!-- Newsfeed -->

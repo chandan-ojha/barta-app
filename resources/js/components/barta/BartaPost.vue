@@ -1,8 +1,12 @@
 <script setup>
+import { ref } from "vue";
 import { useForm, usePage } from "@inertiajs/vue3";
 import { flashMessage } from "../../utils/functions";
 
 const props = defineProps({
+    tags: {
+        type: Array,
+    },
     errors: {
         type: Object,
     },
@@ -11,6 +15,42 @@ const props = defineProps({
 const page = usePage();
 const form = useForm({ body: "" });
 
+/**
+ * Auto suggest tags.
+ */
+const showTagSuggestion = ref(false);
+const filteredTags = ref([]);
+
+function autoSuggestTags(event) {
+    const value = event.target.value;
+    const searchTermIndex = value.lastIndexOf("#");
+
+    if (searchTermIndex !== -1) {
+        const searchTerm = value.substring(searchTermIndex + 1);
+
+        if (searchTerm.trim() !== "") {
+            filteredTags.value = props.tags.filter((tag) =>
+                tag.title.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            showTagSuggestion.value = true;
+            return;
+        }
+    }
+
+    showTagSuggestion.value = false;
+}
+
+/**
+ * Select tag from suggestion list.
+ */
+function selectTag(tagTitle) {
+    form.body = form.body.replace(/#\w*$/, `#${tagTitle} `);
+    showTagSuggestion.value = false;
+}
+
+/**
+ * Post a new barta.
+ */
 function barta_post() {
     form.post("/barta-post", {
         preserveScroll: true,
@@ -34,7 +74,7 @@ function barta_post() {
 <template>
     <form
         @submit.prevent="barta_post"
-        class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3"
+        class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3 relative"
     >
         <!-- Create Post Card Top -->
         <div>
@@ -50,14 +90,30 @@ function barta_post() {
                 <!-- User Avatar -->
 
                 <!-- Content -->
-                <div class="text-gray-700 font-normal w-full">
+                <div class="text-gray-700 font-normal w-full relative">
                     <textarea
                         class="block w-full p-2 pt-2 text-gray-900 rounded-lg border-none outline-none focus:ring-0 focus:ring-offset-0"
                         name="barta"
                         rows="2"
                         :placeholder="`What's going on, ${page.props.auth.user.first_name}?`"
                         v-model="form.body"
-                    ></textarea>
+                        @input="autoSuggestTags"
+                    >
+                    </textarea>
+                    <!-- Tag Suggestion List -->
+                    <ul
+                        v-if="showTagSuggestion && filteredTags.length > 0"
+                        class="mt-1 text-gray-500 text-sm bg-white border border-gray-300 rounded-lg shadow-md absolute left-0 z-10 w-52 max-h-24 overflow-auto"
+                    >
+                        <li
+                            v-for="tag in filteredTags"
+                            :key="tag.id"
+                            class="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+                            @click="selectTag(tag.title)"
+                        >
+                            {{ tag.title }}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
